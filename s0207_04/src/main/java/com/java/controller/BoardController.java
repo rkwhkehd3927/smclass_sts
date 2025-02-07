@@ -17,6 +17,7 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	
 
 	@GetMapping("/blist")
 	public String blist(Model model) {
@@ -24,5 +25,12 @@ public class BoardController {
 		ArrayList<BoardDto> list = boardService.blist();
 		model.addAttribute("list",list);
 		return "board/blist";
+	}
+	
+	@GetMapping("/bview")
+	public String bview(int bno) {
+		System.out.println("bno: "+bno);
+		BoardDto boardDto = boardService.bview(bno);
+		return "board/bview";
 	}
 }

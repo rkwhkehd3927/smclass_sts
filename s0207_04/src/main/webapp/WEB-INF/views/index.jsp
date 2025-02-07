@@ -25,6 +25,7 @@
 				<li><a href="/member/memInsert">회원가입</a></li>
 				<li><a href="/member/mlist">회원리스트</a></li>
 				<li><a href="/board/blist">게시판</a></li>
+				<li><a href="/board/bview/?bno=2">게시글보기</a></li>
 			</c:if>
 			<c:if test="${session_id != null }">
 				<li><a href="/member/memInfo">회원정보</a></li>

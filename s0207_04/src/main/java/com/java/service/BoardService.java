@@ -9,4 +9,6 @@ public interface BoardService {
 	// 게시판리스트
 	ArrayList<BoardDto> blist();
 
+	BoardDto bview(int bno);
+
 }
