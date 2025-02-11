@@ -6,36 +6,28 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <title>글쓰기</title>
+  <title>글수정</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/write.css">
   <script>
-//   function wbtn(){
-// 	  alert("게시글을 저장합니다.");
-//   }
-  
-  // 위에랑 같은 의미임
-  const wbtn = () => {
-	  if($(".id").val().length<1){
-		  alert("아이디를 입력해야 저장 가능 ㅇㅋ?");
-		  $(".id").focus();
-		  return;
-	  }
-	  alert("게시글 저장");
-	  writeFrm.submit();
-  }
+  	const replyBtn = () =>{
+  		alert("답변 저장 완료");
+  		breplyFrm.submit();
+  	}
   </script>
-  
 </head>
 <body>
 <section>
-    <a href="/"><h1>글쓰기</h1></a>
+    <h1>게시글수정</h1>
     <hr>
 
-    <form action="bwrite" name="writeFrm" method="post">
+    <form action="breply" name="breplyFrm" method="post">
       <table>
+      <input type="hidden" name="bno" value="${bdto.bno}">
+      <input type="hidden" name="bgroup" value="${bdto.bgroup}">
+      <input type="hidden" name="bstep" value="${bdto.bstep}">
+      <input type="hidden" name="bindent" value="${bdto.bindent}">
         <colgroup>
           <col width="15%">
           <col width="85%">
@@ -43,19 +35,24 @@
         <tr>
           <th>작성자</th>
           <td>
-            <input type="text" name="id" class="id">
+            <input type="text" name="id" value="${bdto.id}">
           </td>
         </tr>
         <tr>
           <th>제목</th>
           <td>
-            <input type="text" name="btitle">
+            <input type="text" name="btitle" value="<답변> ${bdto.btitle}">
           </td>
         </tr>
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bcontent" cols="50" rows="10"></textarea>
+<textarea name="bcontent" cols="50" rows="10">
+
+---------------------------
+[답글]
+${bdto.bcontent}
+</textarea>
           </td>
         </tr>
         <tr>
@@ -67,7 +64,7 @@
       </table>
       <hr>
       <div class="button-wrapper">
-        <button type="button" onclick="wbtn()" class="write">작성완료</button>
+        <button type="button" onclick="replyBtn()" class="write">답변완료</button>
         <button type="button" class="cancel" onclick="javascript:location.href='/board/blist'">취소</button>
       </div>
     </form>
