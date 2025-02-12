@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 		
 	// ~~~~~~~ 페이지 넘버링 e.g. 1-10,11-20
 		
-		// 마지막 페이지 넘버링
+		// 최대 페이지 넘버링
 		int maxpage = (int)Math.ceil((double)count/rowPerPage);
 //		System.out.println("maxpage: "+maxpage);
 		

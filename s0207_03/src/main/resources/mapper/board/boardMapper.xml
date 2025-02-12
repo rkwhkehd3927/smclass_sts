@@ -5,7 +5,7 @@
 <mapper namespace="com.java.dao.BoardMapper">
   <!-- dao Interface 파일 위치 -->
   
-  <select id="blist" resultType="com.java.dto.BoardDto">
+  <select id="selectAll" resultType="com.java.dto.BoardDto">
 	select * from board <!-- ; 넣으면 에러남 -->
   </select>
   
