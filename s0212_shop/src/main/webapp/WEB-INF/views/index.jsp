@@ -93,6 +93,15 @@ $(document).ready(function() {
 
 
 });
+
+if("${param.loginChk}"=="1"){
+	alert("로그인이 되었습니다.");
+}
+
+//로그아웃 여부
+if("${loginChk}"=="0"){
+	alert("로그아웃")
+}
 </script>
 
 </head>
@@ -167,10 +176,16 @@ $(document).ready(function() {
 			</div>
 			<div id="snb">
 				<ul>
-					<li><a href="#">LOGIN</a></li>
-					<li><a href="#">JOIN</a></li>
-					<li><a href="#">MY PAGE</a></li>
-					<li><a href="#">CART</a></li>
+					<c:if test="${session_id ==null }">
+						<li><a href="/member/login">LOGIN</a></li>
+						<li><a href="/member/join">JOIN</a></li>
+					</c:if>
+					<c:if test="${session_id !=null }">
+						<li>${session_id} 님</li>
+						<li><a href="/member/logout">LOGOUT</a></li>
+						<li><a href="#">MY PAGE</a></li>
+						<li><a href="#">CART</a></li>
+					</c:if>
 				</ul>
 
 				<div id="search">
