@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.MemberDto;
 import com.java.service.MemberService;
@@ -45,6 +46,32 @@ public class MemberController {
 	public String logout() {
 		session.invalidate();
 		return "redirect:/?loginChk=0";
+	}
+	
+	
+	// 회원가입1
+	@GetMapping("/member/step01") 
+	public String step01() {
+		return "member/step01";
+	}
+	
+	
+	// 이메일 발송 1
+//	@ResponseBody
+//	@PostMapping("/member/sendEmail")
+//	public String sendEmail(String email) {
+//		System.out.println("sendEmail: "+email);
+//		String pwcode = memberService.sendEmail(email);
+//		return pwcode;
+//	}
+	
+	// 이메일 발송 2
+	@ResponseBody
+	@PostMapping("/member/sendEmail")
+	public String sendEmail2(String email) {
+		System.out.println("sendEmail: "+email);
+		String pwcode = memberService.sendEmail2(email);
+		return pwcode;
 	}
 
 }

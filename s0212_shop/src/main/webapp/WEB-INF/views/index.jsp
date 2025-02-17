@@ -164,21 +164,21 @@ if("${loginChk}"=="0"){
 	<div id="header">
 		
 		<div id="snbBox">
-			<a href="/"><h1><img src="../images/txt/logo.gif" alt="JARDIN SHOP" /></h1></a>
+			<h1><a href="/"><img src="../images/txt/logo.gif" alt="JARDIN SHOP" /></a></h1>
 			<div id="quickmenu">
 				<div id="mnaviOpen"><img src="../images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
 				<div id="mnaviClose"><img src="../images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
 				<ul>
 					<li><a href="/event/event">EVENT</a></li>
 					<li><a href="/customer/notice">CUSTOMER</a></li>
-					<li><a href="#">COMMUNITY</a></li>
+					<li><a href="/community/epilogue">COMMUNITY</a></li>
 				</ul>
 			</div>
 			<div id="snb">
 				<ul>
 					<c:if test="${session_id ==null }">
 						<li><a href="/member/login">LOGIN</a></li>
-						<li><a href="/member/join">JOIN</a></li>
+						<li><a href="/member/step01">JOIN</a></li>
 					</c:if>
 					<c:if test="${session_id !=null }">
 						<li>${session_id} 님</li>
