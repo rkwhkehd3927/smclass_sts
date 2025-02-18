@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 		MimeMessage message = javaMailSender.createMimeMessage();
 		
 		try{
-			message.setSubject("[ 안내 ] 임시 비밀번호를 보내드립니다.");
+			message.setSubject("[ 안내 ] 임시 비밀번호를 보내드립니다.","utf-8");
 			String hdata = "<tr>\r\n"
 					+ "	<td style='width:700px;height:196px;padding:0;margin:0;vertical-align:top;'>\r\n"
 					+ "		<table width='618' height='194' cellpadding='0' cellspacing='0' align='center' style='margin:0 0 0 40px;border:1px #D9D9D9 solid;'>\r\n"
@@ -74,17 +74,15 @@ public class MemberServiceImpl implements MemberService {
 					+ "";
 			
 			
+			message.setText(hdata,"utf-8","html");
 			// 보내는 이메일 주소
 			message.setFrom(new InternetAddress("rkwhkehd3927@naver.com"));
 			// 받는 이메일 주소
 			message.addRecipient(RecipientType.TO, new InternetAddress(email));
 			javaMailSender.send(message);
+			System.out.println("이메일 전송 완료");
 			
-		}catch(MessagingException e) {e.printStackTrace();
-			
-		}
-		
-		System.out.println("이메일 전송 완료");
+		}catch(MessagingException e) {e.printStackTrace();}
 		
 		return pwCode;
 		
@@ -93,6 +91,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	public String getCreateKey() {
 		String pwCode = "";
+		
 		char[] charset = {
 			'0','1','2','3','4','5','6','7','8','9',
 			'A','B','C','D','E','F','G','H','I','J',

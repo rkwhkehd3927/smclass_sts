@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.java.dto.MemberDto;
 import com.java.service.MemberService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -23,6 +25,16 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
+	
+//	// 로그인 페이지 오픈
+//	@GetMapping("/member/login")
+//	public String login(HttpServletResponse response) {
+//		// 쿠키 생성 - 자바에서 생성
+//		Cookie cookie = new Cookie("cook_id","aaa");
+//		cookie.setMaxAge(60*60*24); // 1일
+//		response.addCookie(cookie); // cookie 저장
+//		return "member/login";
+//	}
 	
 	// 로그인
 	@PostMapping("/member/login")
@@ -67,11 +79,33 @@ public class MemberController {
 	
 	// 이메일 발송 2
 	@ResponseBody
-	@PostMapping("/member/sendEmail")
+	@PostMapping("/member/sendEmail2")
 	public String sendEmail2(String email) {
-		System.out.println("sendEmail: "+email);
-		String pwcode = memberService.sendEmail2(email);
-		return pwcode;
+		System.out.println("sendEmail2: "+email);
+		String pwCode = memberService.sendEmail2(email);
+		session.setAttribute("pwCode", pwCode);
+		return pwCode;
 	}
+	
+	// 인증코드 확인
+	@ResponseBody
+	@PostMapping("/member/pwCodeCheck")
+	public String pwCodeCheck(String pwCode) {
+		System.out.println("pwCodeCheck pwCode: "+pwCode);
+		String pw = (String)session.getAttribute("pwCode");
+		if(pwCode.equals(pw)) {
+			return "1";
+		} else {
+			return "0";
+		}
+		
+	}
+	
+	// 회원가입2
+		@GetMapping("/member/step02") 
+		public String step02() {
+			session.removeAttribute("pwCode"); // 세션삭제
+			return "member/step02";
+		}
 
 }

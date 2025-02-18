@@ -8,7 +8,7 @@ public interface MemberService {
 
 	
 	// 이메일 발송
-//	String sendEmail(String email);
+	String sendEmail(String email);
 	
 	String sendEmail2(String email);
 
