@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>게시판</title>
+		<title>게시글</title>
 		<style>
 			h2{text-align: center;}
 			table,th,td{border:1px solid black; border-collapse: collapse;}
@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>
-		<h2>글 목록</h2>
+		<h2>게시글</h2>
 		<table>
 			<colgroup>
 				<col width="10%">

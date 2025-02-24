@@ -27,7 +27,7 @@
 				<li><a href="/mlist">회원리스트</a></li>
 				<hr>
 <!-- 				<li><a href="/member/mlist">회원리스트</a></li> -->
-				<li><a href="/board/blist">게시판</a></li>
+				<li><a href="/blist">게시판</a></li>
 				<li><a href="/board/boardWrite">게시글 작성</a></li>
 				<li><a href="/board/bview/?bno=2">게시글보기</a></li>
 			</c:if>
