@@ -1,8 +1,10 @@
 package com.java.service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired BoardRepository boardRepository;
 
 	@Override
-	public List<BoardDto> findAll() {
+	public Page<BoardDto> findAll(Pageable pageable) {
 		// Sort 다중 정렬을 사용해서 검색
 		// 정렬
 //		Sort sort = Sort.by(
@@ -27,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
 				
 		
 		// navtiveQuery
-		List<BoardDto> list = boardRepository.findAll();
+		Page<BoardDto> list = boardRepository.findAll(pageable);
 		return list;
 	}
 	
@@ -36,8 +38,11 @@ public class BoardServiceImpl implements BoardService {
 				() -> { // 람다식
 					return new IllegalArgumentException("데이터 처리시 에러");
 				});
+		boardDto.setBhit(boardDto.getBhit()+1); // 게시글 조회수 1 증가
 		
 		return boardDto;
 	}
+
+	
 
 }
