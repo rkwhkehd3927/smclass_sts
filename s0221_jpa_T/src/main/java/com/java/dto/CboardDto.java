@@ -45,8 +45,8 @@ public class CboardDto {
 	private BoardDto boardDto; 
 	//private int bno;
 	
-	@Column(nullable = false,length=2000)
-	private String ccontent;
+//	@Column(nullable = false,length=2000)
+//	private String ccontent;
 	@UpdateTimestamp
 	private Timestamp cdate;
 	

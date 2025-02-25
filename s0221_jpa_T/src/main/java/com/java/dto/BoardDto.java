@@ -64,7 +64,11 @@ public class BoardDto {
 	private String bfile;
 	
 	
-	
+	// CboardDto의 boardDto 컬럼을 넣어줌 (BoardDto boardDto 이름을 가져옴)
+	// mappedBy 연관관계 주인이 아님 - FK 생성하지 말기
+	// 테이블을 join 해서 가져오는 것만 하면 됨
+	@OneToMany(mappedBy = "boardDto",fetch = FetchType.EAGER) // foreign key 생성 안함
+	private List<CboardDto> clist; 
 	
 	
 
