@@ -17,13 +17,13 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 @Service
-public class BoardServiceImpl implements BoardService {
-	
-	@Autowired BoardRepository boardRepository;
+public class BoardServiceImpl implements BoardService{
 
+	@Autowired BoardRepository boardRepository;
+	
 	@Override
 	public Page<BoardDto> findAll(Pageable pageable) {
-		// Sort 다중 정렬을 사용해서 검색
+		// Sort 다중정렬을 사용해서 검색
 		// 정렬
 //		Sort sort = Sort.by(
 //				Sort.Order.desc("bgroup"),
@@ -31,23 +31,29 @@ public class BoardServiceImpl implements BoardService {
 //				);
 //		List<BoardDto> list = boardRepository.findAll(sort);
 		
-		// navtiveQuery
+		// navtiveQuery를 사용
 		Page<BoardDto> list = boardRepository.findAll(pageable);
 		return list;
 	}
+
 	
 	@Override // 게시글 보기
 	public BoardDto findById(int bno) {
 		BoardDto boardDto = boardRepository.findById(bno).orElseThrow(
-				() -> { // 람다식
-					return new IllegalArgumentException("데이터 처리시 에러");
+				()->{ //람다식
+					return new IllegalArgumentException("데이터 처리시 에러!!");
 				});
-		boardDto.setBhit(boardDto.getBhit()+1); // 게시글 조회수 1 증가
+		boardDto.setBhit(boardDto.getBhit()+1); // 게시글 조회수 1증가
 		// boardRepository.save(boardDto);
 		
 		return boardDto;
 	}
 
 	
+	@Override // 게시글 검색
+	public List<BoardDto> findByBtitleContaining(String search) {
+		List<BoardDto> list = boardRepository.findByBtitleContaining(search);
+		return list;
+	}
 
 }

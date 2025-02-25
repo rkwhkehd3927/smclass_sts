@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,15 +19,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class CboardDto {
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 시퀀스
 	private int cno;
@@ -37,20 +36,21 @@ public class CboardDto {
 //	private int eno;
 //	private String id;
 	
+	
 	@Column(nullable = true,length=100)
 	private String cpw;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="bno")
-	private BoardDto boardDto;
-//	private int bno;
+	private BoardDto boardDto; 
+	//private int bno;
 	
 	@Column(nullable = false,length=2000)
 	private String ccontent;
 	@UpdateTimestamp
-	private Timestamp cdate; 
+	private Timestamp cdate;
 	
-//	@OneToMany(mappedBy="BoardDto")
-//	private List<CboardDto> cboardDto;
-
+//	@OneToMany(mappedBy = "BoardDto") // foreign key 생성 안함
+//	private List<CboardDto> cboardDto; 
+	
 }
