@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+	background-color: #f8f8f8;
+}
+.logo {
+	width: 110px; /* 로고 크기 조정 */
+	height: 45px;
+	background-image: url('/images/tempLogo2.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-right: 50px; /* 로고와 select 사이의 간격 */
+}
+.date-select {
+	 width: 300px; /* select 칸의 길이 조정 */
+     height: 30px;
+     margin-left: 50px; /* select와 로고 사이의 간격 */
+     font-size:18px;
+}
+
+.popup {
+    width: 1000px; /* 너비 */
+    height: 600px; /* 수정된 높이 */
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 15px auto;
+    border-radius: 8px;
+}
+
+.seat-selection {
+    flex: 2;
+    padding: 20px;
+}
+
+.seat-map {
+/*     display: grid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+/*     grid-template-columns: repeat(3, 1fr); */
+	flex-wrap: wrap;
+/*     gap: 10px; */
+    margin-top:30px;
+    height:480px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+.row {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+/*     border: 1px solid black; */
+    margin: 15px;
+    
+ }
+
+/* 선택되지 않은 좌석의 스타일 */
+.seat {
+    width: 10px; /* 좌석 크기 조정 */
+    height: 10px; /* 좌석 크기 조정 */
+    /* 원하는 색상으로 변경하세요 */
+    background-color: #e0e0e0;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* 선택된 좌석의 스타일 */
+ .seat.selected {
+   	background-color: #ff9800;
+    /* 원하는 색상으로 변경하세요 */
+ /*     color: #fff; */
+    /* 선택된 좌석의 텍스트 색상 */
+ }
+
+  /* 결제된 좌석의 스타일 */
+  .seat.disabled {
+    background-color: #000;
+  }
+
+/* .seat:hover { */
+/*     background-color: #c0c0c0; */
+/* } */
+
+
+
+.sidebar {
+    flex: 1;
+    padding: 20px;
+    padding-top: 40px;
+    border-left: 1px solid #ccc;
+}
+
+.seat-grades, .selected-seats {
+    margin-bottom: 20px;
+}
+
+.nextStepBtn {
+	width:150px;
+	height:50px;
+	font-size:15px;
+    padding: 10px 20px;
+    background-color: #FF99FF;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nextStepBtn:hover {
+    background-color: #FFCCFF;
+}
