@@ -47,6 +47,8 @@
 				<li><a href="/list">list</a></li>
 				<li><a href="/ticketShop/onlineTicketView">온라인티켓상세뷰</a></li>
 				<li><a href="/ticketShop/offlineTicketView">오프라인티켓상세뷰</a></li>
+				<li><a href="/ticketShop/marketplace_add">거래 티켓 등록</a></li>
+				<li><a href="/ticketShop/marketplaceView"> 거래 티켓 상세보기</a></li>
 <!-- 				<li><a href="/ticketShop/seatPopUp_temp">좌석팝업</a></li> -->
 				
 				

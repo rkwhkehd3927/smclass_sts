@@ -64,6 +64,21 @@ public class TicketController {
 		
 	}
 	
+	// 거래 티켓 등록
+	@GetMapping("/ticketShop/marketplace_add")
+	public String marketplace_add() {
+		return "ticketShop/marketplace_add";
+		
+	}
+	
+	// 거래 티켓 상세보기
+	@GetMapping("/ticketShop/marketplaceView")
+	public String marketplaceView() {
+		return "ticketShop/marketplaceView";
+		
+	}
+	
+	
 	
 	
 	

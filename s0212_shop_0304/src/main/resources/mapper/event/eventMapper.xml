@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.EventMapper">
+  <select id="selectAll" resultType="com.java.dto.EventDto">
+    <![CDATA[
+    select * from event where rownum<=4 order by eno desc
+    ]]>
+  </select>
+  
+  <select id="selectOne" resultType="com.java.dto.EventDto">
+    select * from event where eno = #{eno}
+  </select>
+  
+  
+  <!-- 하단댓글 가져오기 -->  
+  <select id="selectAllCboard" resultType="com.java.dto.CboardDto">
+    select * from cboard where eno=#{eno} order by cno desc
+  </select>
+  
+  <insert id="insertCboard">
+    <selectKey resultType="int" keyProperty="cno" order="BEFORE">
+      select cboard_seq.nextval from dual
+    </selectKey>
+    insert into cboard values (
+    #{cno},#{eno},#{id},#{cpw},#{ccontent},sysdate)
+  </insert>
+  <select id="selectOneCboard" resultType="com.java.dto.CboardDto">
+    select * from cboard where cno = #{cno}
+  </select>
+  
+  <update id="updateCboard">
+    update cboard set ccontent=#{ccontent},cdate=sysdate
+    where cno = #{cno}
+  </update>
+  
+  <delete id="deleteCboard">
+    delete cboard where cno = #{cno}
+  </delete>
+
+
+</mapper>

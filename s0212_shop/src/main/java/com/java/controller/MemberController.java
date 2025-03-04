@@ -1,10 +1,14 @@
 package com.java.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.MemberDto;
@@ -19,6 +23,33 @@ public class MemberController {
 	
 	@Autowired HttpSession session;
 	@Autowired MemberService memberService;
+	
+	
+	// 회원 1명 가져오기
+	@CrossOrigin
+	@ResponseBody // 인증코드 확인
+	@GetMapping("/member/memberView")
+	public MemberDto memberView(@RequestBody String id) {
+		System.out.println("memberView id: "+id);
+		MemberDto memberDto = memberService.memberView(id);
+		return memberDto;
+		
+	}
+	
+	// 회원 1명 가져오기
+	@CrossOrigin
+	@ResponseBody // 인증코드 확인
+	@GetMapping("/member/memberList")
+	public List<MemberDto> memberList() {
+		List<MemberDto> list = memberService.memberList();
+		return list;
+		
+	}
+	
+	
+	
+	
+	
 	
 	// 로그인 페이지 오픈
 	@GetMapping("/member/login")
