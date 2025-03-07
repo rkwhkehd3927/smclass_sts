@@ -19,10 +19,17 @@
 <body>
 	<div class="header">
         <select class="date-select">
-            <option value="2025-03-01 16:00">2025년 3월 1일 16:00</option>
-            <option value="2025-03-02 18:00">2025년 3월 2일 18:00</option>
-            <option value="2025-03-03 20:00">2025년 3월 3일 20:00</option>
+            <%-- 
+            <option value="${scheduleNo}">2025년 3월 1일 16:00</option>
+            <option value="${scheduleNo}">2025년 3월 2일 18:00</option>
+            <option value="${scheduleNo}">2025년 3월 3일 20:00</option>
+            --%>
             <!-- 추가 날짜 및 시간 옵션 -->
+            <c:forEach var="schedule" items="${schedules}">
+		        <option value="${schedule.scheduleNo}">
+		            ${schedule.scheduleDate} ${schedule.scheduleStartTime}
+		        </option>
+		    </c:forEach>
         </select>
         <div class="logo"></div> <!-- 로고 이미지 -->
     </div>

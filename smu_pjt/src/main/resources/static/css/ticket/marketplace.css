@@ -22,7 +22,6 @@ header {
 
 header, section {
 	width: 100%;
-	max-width: 1500px;
 	box-sizing: border-box;
 }
 

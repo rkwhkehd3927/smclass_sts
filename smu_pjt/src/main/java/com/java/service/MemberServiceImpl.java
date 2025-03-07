@@ -2,6 +2,7 @@ package com.java.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,18 @@ public class MemberServiceImpl implements MemberService {
 //		
 //	}
 
-	@Override //로그인
+	@Override // 로그인
 	public MemberDto findByIdAndPw(String memberId, String memberPw) {
 		MemberDto memberDto = memberRepository.findByMemberIdAndMemberPw(memberId,memberPw);
+		return memberDto;
+	}
+
+	@Override
+	public MemberDto findById(String memberId) {
+		MemberDto memberDto = memberRepository.findByMemberId(memberId);
+//				.orElseThrow(()->{
+//					return new IllegalArgumentException("데이터 처리시 에러!");
+//				});
 		return memberDto;
 	}
 

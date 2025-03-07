@@ -71,7 +71,12 @@
         <div class="user-options">
             <span>장바구니</span>
             <span>마이페이지</span>
-            <span>로그인</span>
+            <c:if test="${memberId == null }">
+				<span><a href="/login">로그인</a></span>
+			</c:if>
+            <c:if test="${memberId != null }">
+				<span><a href="/member/logout">로그아웃</a></span>
+			</c:if>	
             <span>고객센터</span>
         </div>
     </header>
@@ -91,7 +96,7 @@
                 	<div class="banner-text">BLINK MEMBERSHIP<br>RENEWAL! 지금 바로 확인하세요</div>
                 </div>
                 <div class="swiper-slide">
-                	<img src="images/ticket/onlineB04.png" alt="배너 4">
+                	<img src="/images/ticket/onlineB04.png" alt="배너 4">
                 	<div class="banner-text">집에 가고 싶슴다.<br>집에 보내주시져.</div>
                	</div>
             </div>

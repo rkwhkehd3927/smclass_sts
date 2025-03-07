@@ -20,7 +20,6 @@ header {
 
 header, section {
 	width: 100%;
-	max-width: 1500px;
 	box-sizing: border-box;
 }
 
@@ -52,6 +51,11 @@ header, section {
 .user-options span {
     font-size: 14px;
     color: black;
+}
+
+.user-options a {
+	color: inherit;
+	text-decoration: none;
 }
 .ticket-container {
     display: flex;
@@ -167,7 +171,7 @@ hr {
 }
 
 .event-image-container {
-    width: 80%;
+    width: 50%;
     height: 500px;
     overflow: hidden;
     position: relative;
@@ -191,6 +195,31 @@ hr {
     cursor: pointer;
     margin-top: 10px;
 }
+
+#notice-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+#notice-content p {
+	font-size: 20px;
+}
+
+#notice-content ul {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+}
+
+#notice-content li {
+    margin-bottom: 8px; /* 항목 간 간격 조정 */
+}
+
 
 .scroll-to-top {
     position: fixed;

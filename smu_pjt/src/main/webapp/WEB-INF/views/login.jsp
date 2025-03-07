@@ -15,9 +15,9 @@
 	  <h2>로그인</h2>
 	  <form action="login" method="post">
 	    <label>아이디</label>
-	    <input type="text" name="id"><br/>
+	    <input type="text" name="memberId"><br/>
 	    <label>패스워드</label>
-	    <input type="password" name="pw"><br/>
+	    <input type="password" name="memberPw"><br/>
 	    <input type="submit" value="로그인">
 	  </form>
 	  

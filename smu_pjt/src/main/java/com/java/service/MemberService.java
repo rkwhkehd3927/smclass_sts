@@ -9,11 +9,13 @@ public interface MemberService {
 //	void save(MemberDto mdto);
 	//전체 회원리스트
 //	List<MemberDto> findAll();
-	//회원정보 1명
-//	MemberDto findById(String member_id);
+	
 	//회원정보삭제
 //	void deleteById(String member_id);
+	
 	//로그인
 	MemberDto findByIdAndPw(String memberId, String memberPw);
+	//회원정보 1명
+	MemberDto findById(String memberId);
 
 }

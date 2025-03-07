@@ -10,6 +10,9 @@ public interface MemberRepository extends JpaRepository<MemberDto, String> {
 
 	//select * from memberdto where id=#{id} and pw=#{pw}
 	MemberDto findByMemberIdAndMemberPw(String memberId, String memberPw);
+
+	MemberDto findByMemberId(String memberId);
+
 	
 	//Memberdto 로그인부분 쿼리
 //	@Query(value = "select * from memberdto where id=? and pw=?",

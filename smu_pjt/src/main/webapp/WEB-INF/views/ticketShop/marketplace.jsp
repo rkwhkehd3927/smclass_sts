@@ -216,6 +216,10 @@
 	                $("#seatInfo").val(seat);
 	                $("#totalQuantity").val(quantity);
 	            });
+	            
+	            $("#saveProduct").click(function(){
+	            	alert("판매 등록 완료");
+	            });
 	        });
 	    </script>
 	

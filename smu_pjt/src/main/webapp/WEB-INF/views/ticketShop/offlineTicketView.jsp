@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>티켓 예매</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <link rel="stylesheet" href="../css/ticket/offlineTicketView.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +25,15 @@
         <div class="user-options">
             <span>장바구니</span>
             <span>마이페이지</span>
-            <span>로그인</span>
+            <c:if test="${memberId == null }">
+				<span><a href="/login">로그인</a></span>
+			</c:if>
+            <c:if test="${memberId != null }">
+				<span><a href="/member/logout">로그아웃</a></span>
+			</c:if>	
             <span>고객센터</span>
+            
+            
         </div>
     </header>
     <section>
@@ -41,19 +49,35 @@
                     <option>DAY 1 : 2025-05-03 18:00 (KST)</option>
                     <option>DAY 2 : 2025-05-04 17:00 (KST)</option>
                 </select>
-    			<input type="hidden" id="isLoggedIn" value="${not empty mdto ? 'true' : 'false'}">
+    			<input type="hidden" id="isLoggedIn" value="${memberId}">
                 <button class="buy-button">구매하기</button>
             </div>
         </div>
         <div class="details-faq">
-            <button class="active">상세정보</button>
-            <button>유의사항</button>
+            <button class="active" onclick="showDetails()">상세정보</button>
+            <button onclick="showNotice()">유의사항</button>
         </div>
         <hr/>
-		<div class="event-image-container">
-            <img src="/images/ticket/ticketInfo_sample.jpg" alt="Event Details">
+        
+        <div id="event-content">
+			<div class="event-image-container">
+	            <img src="/images/ticket/ticketInfo_sample.jpg" alt="Event Details">
+	        </div>
+	        <button class="more-button">더보기 ▼</button>
         </div>
-        <button class="more-button">더보기 ▼</button>
+        
+        <div id="notice-content" style="display: none;">
+            <div class="notice-container">
+                <h2>유의사항</h2>
+                <p>콘서트 관련 유의사항이 여기에 표시됩니다.</p>
+                <ul>
+                    <li>입장은 공연 시작 30분 전부터 가능합니다.</li>
+                    <li>티켓은 양도 및 재판매가 금지됩니다.</li>
+                    <li>공연장 내 음식물 반입이 금지됩니다.</li>
+                    <li>공연 중 사진 및 동영상 촬영이 제한될 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
         
         <div class="scroll-to-top">
         	<i class="fa-solid fa-arrow-up fa-2x"></i>
