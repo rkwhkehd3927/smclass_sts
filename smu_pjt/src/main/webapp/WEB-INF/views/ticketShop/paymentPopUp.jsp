@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="../css/ticket/paymentPopUp.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/ticket/seatPopUp.js"></script>
+    <script src="../js/ticket/paymentPopUp.js"></script>
 </head>
-<div class="header">
-    <select class="date-select">
-        <option value="2025-03-01 16:00">2025년 3월 1일 16:00</option>
-        <option value="2025-03-02 18:00">2025년 3월 2일 18:00</option>
-        <option value="2025-03-03 20:00">2025년 3월 3일 20:00</option>
-    </select>
-    <div class="logo"></div> <!-- 로고 이미지 -->
-</div>
 <body>
+	<div class="header">
+	    <select class="date-select">
+	        <option value="2025-03-01 16:00">2025년 3월 1일 16:00</option>
+	        <option value="2025-03-02 18:00">2025년 3월 2일 18:00</option>
+	        <option value="2025-03-03 20:00">2025년 3월 3일 20:00</option>
+	    </select>
+	    <div class="logo"></div> <!-- 로고 이미지 -->
+	</div>
 <div class="popup">
     <div class="seat-selection">
         <h2>티켓수령방법</h2>
@@ -38,9 +38,9 @@
         <div class="section buyer-info">
             <ul>
                 <li>이름: <input type="text" value="황혜진" disabled></li>
-                <li>생년월일: <input type="text" placeholder="870201 (YYMMDD)"></li>
-                <li>연락처: <input type="text" value="010-5116-6729" disabled></li>
-                <li>이메일: <input type="text" value="dnskem1213@naver.com" disabled></li>
+                <li>생년월일: <input type="text" placeholder="971213 (YYMMDD)"></li>
+                <li>연락처: <input type="text" value="010-0000-0000" disabled></li>
+                <li>이메일: <input type="text" value="rkwhkehd3927@naver.com" disabled></li>
             </ul>
         </div>
 
@@ -50,8 +50,8 @@
                 <button>기본</button>
                 <button>황혜진</button>
             </div>
-            <p>경기도 고양시 일산서구 가좌3로 45 (가좌동, 가좌마을2단지아파트) 205동 1903호</p>
-            <p>010-5116-6729</p>
+            <p>서울 금천구 가산디지털2로 101</p>
+            <p>010-0000-0000</p>
             <p class="info-text">배송 받는 분의 연락처가 정확한 정보인지 입력해주세요.</p>
         </div>
     </div>
@@ -91,7 +91,8 @@
                 <td class="total">115,200원</td>
             </tr>
         </table>
-        <button class="nextStepBtn2">다음단계</button>
+        <button class="prevStepBtn">이전단계</button>
+        <button class="nextStepBtn">다음단계</button>
     </div>
 </div>
 

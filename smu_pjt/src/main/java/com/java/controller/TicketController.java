@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.java.dto.MemberDto;
-import com.java.service.MemberService;
+//import com.java.dto.MemberDto;
+//import com.java.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TicketController {
 
 	
-	@Autowired MemberService memberService;
-	@Autowired HttpSession session;
+//	@Autowired MemberService memberService;
+//	@Autowired HttpSession session;
 	
 	// 온라인 티켓 구매 페이지 오픈
 	@GetMapping("/ticketShop/onlineTicketView")
@@ -34,49 +34,47 @@ public class TicketController {
 		
 	}
 	
-	@PostMapping("/ticketShop/offlineTicketView")
-	public String offlineTicketView(String id,Model model) {
-		//회원정보 1명 - select One
-		MemberDto memberDto = memberService.findById(id);
-		model.addAttribute("mdto",memberDto);
-		return "ticketShop/offlineTicketView";
-		
-	}
+//	@PostMapping("/ticketShop/offlineTicketView")
+//	public String offlineTicketView(String id,Model model) {
+//		//회원정보 1명 - select One
+//		MemberDto memberDto = memberService.findById(id);
+//		model.addAttribute("mdto",memberDto);
+//		return "ticketShop/offlineTicketView";
+//		
+//	}
 	
 	// 좌석 팝업 오픈
 	@GetMapping("/ticketShop/seatPopUp")
-	public String seatPopUp_temp() {
+	public String seatPopUp() {
 		return "ticketShop/seatPopUp";
 		
 	}
 	
-	// 좌석 팝업 오픈
+	// 티켓 거래 양도 페이지
+	@GetMapping("/ticketShop/marketplace")
+	public String marketplace() {
+		return "ticketShop/marketplace";
+	}
+	// 티켓 거래 양도 페이지
+	@GetMapping("/ticketShop/marketplaceView")
+	public String marketplaceView() {
+		return "ticketShop/marketplaceView";
+	}
+	
+	// 팝업 - 결제순서 1
 	@GetMapping("/ticketShop/paymentPopUp")
 	public String paymentPopUp() {
 		return "ticketShop/paymentPopUp";
 		
 		
 	}
-	// 좌석 팝업 오픈
+	// 팝업 - 결제순서 2
 	@GetMapping("/ticketShop/paymentPopUp2")
 	public String paymentPopUp2() {
 		return "ticketShop/paymentPopUp2";
 		
 	}
 	
-	// 거래 티켓 등록
-	@GetMapping("/ticketShop/marketplace_add")
-	public String marketplace_add() {
-		return "ticketShop/marketplace_add";
-		
-	}
-	
-	// 거래 티켓 상세보기
-	@GetMapping("/ticketShop/marketplaceView")
-	public String marketplaceView() {
-		return "ticketShop/marketplaceView";
-		
-	}
 	
 	
 	

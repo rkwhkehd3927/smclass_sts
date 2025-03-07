@@ -8,16 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>티켓 상세 정보</title>
     <link rel="stylesheet" href="../css/ticket/marketplaceView.css">
+    <link rel="stylesheet" href="../css/ticket/marketplaceView_modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
      <script>
         $(document).ready(function () {
+        	let modal = $('#orderModal');
+            let closeBtn = $('.close');
+            let buyBtn = $('.buy-btn');
+            
             $('#tabs .tab-menu div').click(function () {
                 let index = $(this).index();
                 $('#tabs .tab-content').removeClass('active');
                 $('#tabs .tab-menu div').removeClass('active');
                 $('#tabs .tab-content').eq(index).addClass('active');
                 $('#tabs .tab-menu div').eq(index).addClass('active');
+            });
+            
+            // 모달
+            buyBtn.click(function() {
+                modal.show();
+            });
+            
+            closeBtn.click(function() {
+                modal.hide();
+            });
+            
+            $(window).click(function(event) {
+                if ($(event.target).is(modal)) {
+                    modal.hide();
+                }
+            });
+            
+            $('#quantity').on('input', function() {
+                let pricePerTicket = 550000;
+                let quantity = $(this).val();
+                let totalPrice = pricePerTicket * quantity;
+                $('#totalPrice').text('₩' + totalPrice.toLocaleString());
             });
         });
     </script>
@@ -83,5 +110,50 @@
         <div class="tab-content">상품 결제/수령 안내 내용</div>
         <div class="tab-content">취소/환불 안내 내용</div>
     </div>
+    
+    <!-- 구매 모달 -->
+    <div id="orderModal" class="orderModal">
+        <span class="close">&times;</span>
+	    <div class="modal-content">
+	    	<h2>결제하기</h2>
+	    	<div class="modal-body">
+	    	
+	    		<div class="form-group">
+			        <h3>주문 상품 정보</h3>
+			        <p><strong>좌석 정보:</strong> <span id="seatInfo">1층 A1 | 지정석</span></p>
+			        <p><strong>사용가능일:</strong> <span id="useDate">03.29 18:30</span></p>
+			        <p><strong>상품 번호:</strong> <span id="itemNumber">5543-9417-5036</span></p>
+		        </div>
+		        <div class="form-group">
+			        <h3>거래 방식 선택</h3>
+			        <label><input type="radio" name="trade" value="e-ticket" checked> e-ticket 거래</label>
+			        <label><input type="radio" name="trade" value="delivery"> 배송 거래</label>
+		        </div>
+		        <div class="form-group">
+			        <h3>장당 가격</h3>
+			        <p>₩550,000</p>
+		        </div>
+		        <div class="form-group">
+			        <h3>구매 수량</h3>
+			        <input type="number" id="quantity" value="1" min="1">
+		        </div>
+		        <div class="form-group">
+			        <h3>결제 수단</h3>
+			        <label><input type="radio" name="payment" value="card" checked> 카드 결제</label>
+			        <label><input type="radio" name="payment" value="general"> 일반 결제</label>
+		        </div>
+		        <div class="form-group">
+			        <h3>총 가격</h3>
+			        <p id="totalPrice">₩550,000</p>
+	        	</div>
+	        	<div class="form-group">
+                    <input type="checkbox" id="agreeTerms"> 결제 약관에 동의합니다.
+                </div>
+	        	<button id="payButton">결제하기</button>
+	        </div>
+	    </div>
+	</div>
+	    
+    
 </body>
 </html>

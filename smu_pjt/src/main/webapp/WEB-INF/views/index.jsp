@@ -33,6 +33,7 @@
 		            event.preventDefault(); // 기본 링크 동작 방지
 		            window.open('/ticketShop/seatPopUp', 'popup', 'width=1100,height=710');
 		        });
+		        
 		    });
 		</script>
 
@@ -42,13 +43,12 @@
 				<li><a href="/login">로그인</a></li>
 				<li><a href="/member">회원가입</a></li>
 				<li><a href="/ticketMain">티켓샵메인</a></li>
-				<li><a href="/sprods">sprods</a></li>
-				<li><a href="/smain">smain</a></li>
-				<li><a href="/list">list</a></li>
-				<li><a href="/ticketShop/onlineTicketView">온라인티켓상세뷰</a></li>
-				<li><a href="/ticketShop/offlineTicketView">오프라인티켓상세뷰</a></li>
-				<li><a href="/ticketShop/marketplace_add">거래 티켓 등록</a></li>
-				<li><a href="/ticketShop/marketplaceView"> 거래 티켓 상세보기</a></li>
+<!-- 				<li><a href="/sprods">sprods</a></li> -->
+<!-- 				<li><a href="/smain">smain</a></li> -->
+<!-- 				<li><a href="/list">list</a></li> -->
+<!-- 				<li><a href="/ticketShop/onlineTicketView">온라인티켓상세뷰</a></li> -->
+<!-- 				<li><a href="/ticketShop/offlineTicketView">오프라인티켓상세뷰</a></li> -->
+				<li><a href="/ticketShop/marketplace">티켓거래메인</a></li>
 <!-- 				<li><a href="/ticketShop/seatPopUp_temp">좌석팝업</a></li> -->
 				
 				

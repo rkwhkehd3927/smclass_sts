@@ -83,7 +83,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $("#openModal").click(function() {
+            $(".tradingTicket").click(function() {
                 $("#productModal").fadeIn(100);
             });
             function resetModal() {

@@ -13,13 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <script src="../js/ticket/offlineTicketView.js"></script>
-    <style>
-        
-    </style>
-     
-    <script>
-      
-    </script>
+    
 </head>
 <body>
     <header>
@@ -34,7 +28,7 @@
             <span>고객센터</span>
         </div>
     </header>
-    <main>
+    <section>
         <div class="ticket-container">
             <div class="ticket-image">
                 <img src="/images/ticket/ticketInfo_Tsample.jpg" alt="Yuuri Arena Live 2025 at Seoul">
@@ -64,6 +58,6 @@
         <div class="scroll-to-top">
         	<i class="fa-solid fa-arrow-up fa-2x"></i>
         </div>
-    </main>
+    </section>
 </body>
 </html>

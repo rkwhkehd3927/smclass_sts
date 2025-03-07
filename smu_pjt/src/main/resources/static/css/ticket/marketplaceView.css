@@ -4,18 +4,23 @@ body {
     font-family:'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F8F9FA;
 }
       
-      header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    width: 100%;
     height: 50px;
 }
+
+header .container {
+	width: 100%;
+	max-width: 1500px;
+	box-sizing: border-box;
+}
+
 .logo {
     font-size: 25px;
     font-weight: bold;
@@ -33,7 +38,7 @@ body {
 .header-left {
     display: flex;
     align-items: center;
-    margin-left: 60px;
+    margin-left: 30px;
 }
 .user-options {
     display: flex;
@@ -123,8 +128,8 @@ body {
     display: block;
     width: 100%;
     padding: 10px;
-    background: #FF6600;
-    color: white;
+    background: #ff9a9e;
+    color: black;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -132,7 +137,7 @@ body {
     margin-top: 30px;
 }
 .buy-btn:hover {
-    background: #E65C00;
+    opacity: 90%;
 }
 .gray-text {
     color: gray;
@@ -181,3 +186,4 @@ body {
 .tab-content.active {
     display: block;
 }
+

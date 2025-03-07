@@ -2,9 +2,11 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
 }
 
 /* 헤더 */
@@ -15,9 +17,15 @@ header {
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    width: 100%;
-    height: 50px;
+    height: 70px;
 }
+
+header, section {
+	width: 100%;
+	max-width: 1500px;
+	box-sizing: border-box;
+}
+
 .logo {
     font-size: 25px;
     font-weight: bold;
@@ -35,7 +43,7 @@ header {
 .header-left {
     display: flex;
     align-items: center;
-    margin-left: 60px;
+    margin-left: 30px;
 }
 .user-options {
     display: flex;
