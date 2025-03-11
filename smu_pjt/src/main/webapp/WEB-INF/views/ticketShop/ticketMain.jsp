@@ -8,57 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>티켓 예매</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/ticket/ticketMain.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <!--     <link rel="stylesheet" href="../css/ticket/offlineTicketView.css"> -->
     <link rel="stylesheet" href="../css/ticket/ticketMain.css">
-    
-    <script>
-	    $(document).ready(function () {
-	        $(".menu-item").click(function () {
-	            // 모든 메뉴에서 active 제거 후 현재 클릭한 메뉴에 추가
-	            $(".menu-item").removeClass("active");
-	            $(this).addClass("active");
-	
-	            // 선택한 메뉴의 index 확인 (0: Ticket, 1: Live)
-	            var index = $(this).index();
-	
-	            if (index === 0) {
-// 	                filterCategory("Category1", $(".filter-item").first());
-	            	// Ticket 탭 클릭 시: Category1 + Category2 표시
-	                $(".product-item").hide();
-	                $(".product-item[data-category='Category1'], .product-item[data-category='Category2']").show();
-	            } else {
-// 	                filterCategory("Category-live", $(".filter-item").first());
-	            	// Live 탭 클릭 시: Category3만 표시
-	                $(".product-item").hide();
-	                $(".product-item[data-category='Category-live']").show();
-	            }
-	        });
-	
-	        // 페이지 로드 시 기본값 (Ticket 탭 활성화 & Ticket 리스트만 표시)
-	        $(".menu-item").first().click();
-	        
-	        
-	        // 티켓 상세뷰
-	        $(".product-item").on('click', function() {
-	            alert("ㅎㅇ");
-	            var category = $(this).data('category');
-
-	            if (category === 'Category1' || category === 'Category2') {
-	                window.location.href = '/ticketShop/offlineTicketView';
-	            } else if (category === 'Category-live') {
-	                window.location.href = '/ticketShop/onlineTicketView';
-	            } else {
-	                console.log('알 수 없는 카테고리: ' + category);
-	            }
-	        });
-
-	        
-	        
-	    }); // jquery
-
-    </script>
     
     
 </head>
@@ -144,7 +98,39 @@
     
     <!-- 제품 목록 -->
     <div class="product-list">
+    	<!-- 동적 상품 리스트 출력 임시 -->
+   	 	<c:forEach var="saleConcertDto" items="${saleConcerts}">
+	    	<c:set var="bookedTickets" value="${saleConcertDto.ticketType == 'online' ? 0 : bookedTicketsMap[saleConcertDto.saleConcertNo]}" />
+<%--     		<c:out value="콘서트번호: ${saleConcertDto.saleConcertNo}, 예약된 좌석: ${bookedTickets}, 티켓 타입: ${saleConcertDto.ticketType}, 가격: ${saleConcertDto.concertPrice}" /><br/> --%>
+			
+			<div class="product-item 
+				${saleConcertDto.isSoldOut(bookedTickets) ? 'sold-out-item' : ''}" 
+        		 data-category="${saleConcertDto.ticketType == 'online' ? 'Category-live' : 'Category-offline'}" 
+        		 data-id="${saleConcertDto.saleConcertNo}">
+<%-- 	        <div class="product-item sold-out-item" data-category="Category1" data-id="${saleConcertDto.concertDto.concertNo}"> --%>
+	            
+	            <div class="product-image-container">
+	                <img class="product-image" src="/images/ticket/item01.jpg" alt="Product Image" />
+	                <c:if test="${saleConcertDto.isSoldOut(bookedTickets)}">
+		                <span class="sold-out-label">Sold Out</span>
+		            </c:if>
+	            </div>
+	            
+	            <div class="product-name">${saleConcertDto.concertDto.concertName}</div>
+	            
+	            <div class="product-price">
+	            	<c:if test="${saleConcertDto.concertPrice != null}">
+		                ${saleConcertDto.concertPrice}
+		            </c:if>
+	            </div>
+	            <div class="product-feature">단독판매</div>
+	        </div>
+	    </c:forEach>
+	    
+    
+    
       <!-- 예시 상품 1 (품절) -->
+      <%-- 
       <div class="product-item sold-out-item" data-category="Category1" data-id="${saleConcertDto.concertDto.concertNo}">
         <div class="product-image-container">
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 1" />
@@ -224,6 +210,7 @@
         <div class="product-price"></div>
       </div>
       <!-- 필요한 만큼 추가 -->
+    --%>
     </div>
     
     

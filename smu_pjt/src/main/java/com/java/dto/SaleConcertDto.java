@@ -15,12 +15,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = {"concertDto"})
 public class SaleConcertDto {
 
 	
@@ -37,10 +39,10 @@ public class SaleConcertDto {
 
 
 	@Column(name = "total_ticket_count", nullable = true)
-	private Integer totalTicketCount;  // 해당 콘서트의 전체 티켓 개수 (온라인은 0)
+	private Integer totalTicketCount;  // 해당 콘서트의 전체 티켓 개수 (온라인은 null)
 
 	@Column(name = "available_ticket_count", nullable = true)
-	private Integer availableTicketCount;  // 판매 가능한 티켓 개수 (온라인은 0)
+	private Integer availableTicketCount;  // 판매 가능한 티켓 개수 (온라인은 null)
 	
 	@Column(name = "ticket_type", nullable = false)
 	private String ticketType;  // "offline" 또는 "online"
@@ -53,22 +55,24 @@ public class SaleConcertDto {
 
     @Column(name = "sale_end_date", nullable = false)
     private LocalDate saleEndDate;  // 티켓 판매 종료일
+    
+    @Column(name = "concert_price", nullable = true)
+    private Integer concertPrice;  // 티켓 가격 (온라인만 가격이 존재, 오프라인은 null)
 
+    
+    /** 
+     * ✅ 프론트에서 솔드아웃 여부를 체크할 때 사용하는 메서드
+     * - 온라인은 무조건 구매 가능해야 하므로 false 반환
+     */
     @Transient
-	public boolean isSoldOut(int bookedTickets) {
-    	if ("online".equals(ticketType)) {
+	public boolean isSoldOut(Integer bookedTickets) {
+    	if ("online".equals(ticketType) || totalTicketCount == null) {
             return false; // 온라인은 무조건 판매 가능
         }
-	    return bookedTickets >= totalTicketCount;
+//    	int booked = (bookedTickets != null) ? bookedTickets : 0; // null이면 0으로 처리
+//        return booked >= totalTicketCount;
+    	return (bookedTickets != null && bookedTickets >= totalTicketCount);
 	}  // 솔드아웃 여부 판단 (true: 솔드아웃)
     
-    @Transient
-	public int getRemainingTickets(int bookedTickets) {
-    	if ("online".equals(ticketType)) {
-            return Integer.MAX_VALUE; // 온라인은 무제한
-        }
-	    return Math.max(totalTicketCount - bookedTickets, 0);
-	} // 남은 티켓 개수 계산
-	
-	
+   
 }

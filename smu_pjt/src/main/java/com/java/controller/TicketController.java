@@ -1,6 +1,8 @@
 package com.java.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,10 +43,22 @@ public class TicketController {
 		// 콘서트 상품 리스트 불러오기
 		List<SaleConcertDto> saleConcerts = saleConcertService.getOpenSaleConcerts();
 		
+		// ✅ 예약된 좌석 개수를 저장할 Map 생성
+		Map<Integer, Integer> bookedTicketsMap = saleConcerts.stream()
+		    .collect(Collectors.toMap(
+		        SaleConcertDto::getSaleConcertNo, // 🔥 saleConcertNo 기준으로 매핑
+		        saleConcert -> concertService.getBookedTickets(saleConcert.getConcertDto().getConcertNo()), // concertNo로 예약 좌석 개수 조회
+		        (existing, replacement) -> existing // 중복 시 기존 값 유지 (근데 어차피 saleConcertNo는 유일하니까 중복 안 생김!)
+		    ));
+
+
+		
+		System.out.println("saleConcerts: "+saleConcerts);
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
 		// 콘서트 상품 리스트 불러오기
 		model.addAttribute("saleConcerts",saleConcerts);
+		model.addAttribute("bookedTicketsMap", bookedTicketsMap); // ✅ JSP에서 사용 가능하도록 추가
 		return "ticketShop/ticketMain";
 	}
 	
@@ -92,13 +106,17 @@ public class TicketController {
 		memberId = (String)session.getAttribute("session_id");
 		System.out.println("세션에 저장된 ID 1: " + memberId);
 		
+		// 콘서트 정보 조회
+		ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
+		
+		System.out.println("concertDto: "+concertDto);
 		
         // 해당 콘서트의 판매 티켓 리스트 (판매 가능 기간, 전체 티켓 개수, 남은 티켓 개수, 솔드아웃 여부 등)
         List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertByConcertNo(concertNo);
 		
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
-//		model.addAttribute("concertDto", concertDto);
+		model.addAttribute("concertDto", concertDto);
 		model.addAttribute("saleConcertDto", saleConcerts);
 		return "ticketShop/offlineTicketView";
 		

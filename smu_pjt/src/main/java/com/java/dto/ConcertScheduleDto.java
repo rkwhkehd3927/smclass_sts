@@ -15,12 +15,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = {"concertDto"})
 public class ConcertScheduleDto {
 	
 	@Id

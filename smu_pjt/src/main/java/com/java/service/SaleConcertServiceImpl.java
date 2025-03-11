@@ -20,7 +20,7 @@ public class SaleConcertServiceImpl implements SaleConcertService {
 	@Override
 	public List<SaleConcertDto> getOpenSaleConcerts() {
 		LocalDate today = LocalDate.now();
-        return saleConcertRepository.findByRsvOpenDateBefore(today);
+        return saleConcertRepository.findByRsvOpenDateLessThanEqual(today);
 	}
 
 	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회
