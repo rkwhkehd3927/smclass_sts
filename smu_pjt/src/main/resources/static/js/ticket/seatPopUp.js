@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	const seatData = [
-        { floor: "1층", sections: ["vip", "r", "s"], rowCounts: [2, 3, 4], cols: 18 },
+        { floor: "1층", sections: ["vip", "s", "r"], rowCounts: [2, 3, 4], cols: 18 },
         { floor: "2층", sections: ["a"], rowCounts: [5], cols: 20 }
     ];
 	
@@ -27,62 +27,31 @@ $(document).ready(function() {
 	
 	// seatPopUp.js에서 날짜 변경 시 API 호출 및 좌석 정보 업데이트
 	$('.date-select').on('change', function() {
-        let scheduleNo = $(this).val();
-        if (!scheduleNo) return;
+	    let scheduleNo = $(this).val();
+	    if (!scheduleNo) return;
 
-        $.ajax({
-            url: `/ticketShop/seatPopUp?scheduleNo=${scheduleNo}`,
-            type: 'post',
-            success: function(seats) {
-                updateSeatSelection(seats);
-            },
-            error: function() {
-                alert('좌석 정보를 불러오는 데 실패했습니다.');
-            }
-        });
-    });
+	    $.ajax({
+	        url: `/ticketShop/seatPopUp?scheduleNo=${scheduleNo}`,
+	        type: 'POST',
+	        success: function(seats) {
+	            updateSeatSelection(seats);
+	        },
+	        error: function() {
+	            alert('좌석 정보를 불러오는 데 실패했습니다.');
+	        }
+	    });
+	});
 
-//    function updateSeatSelection(seats) {
-//        $('.seat').removeClass('reserved selected').addClass('available');
-//        seats.forEach(seat => {
-//            let seatElement = $(`#seat-${seat.id}`);
-//            if (seat.isReserved) {
-//                seatElement.removeClass('available').addClass('reserved');
-//            }
-//        });
-//    }
-//	
-//	function updateSelectedSeats() {
-//        let selectedSeats = $('.seat.selected').map(function() {
-//            return {
-//                seatId: $(this).data('seat-id'),
-//                scheduleId: $('.date-select').val(),
-//                price: $(this).data('price')
-//            };
-//        }).get();
-//        
-//        console.log('선택한 좌석 정보:', selectedSeats);
-//    }
-	
-	// concertScheduleDto 데이터를 기반으로 날짜 옵션 추가
-//    function loadConcertSchedules() {
-//        $.ajax({
-//            url: '/concert/schedules',
-//            type: 'GET',
-//            success: function(schedules) {
-//                let select = $('.date-select');
-//                select.empty();
-//                schedules.forEach(schedule => {
-//                    select.append(`<option value="${schedule.scheduleNo}">${schedule.date} ${schedule.time}</option>`);
-//                });
-//            },
-//            error: function() {
-//                alert('콘서트 일정을 불러오는 데 실패했습니다.');
-//            }
-//        });
-//    }
-//
-//    loadConcertSchedules();
+	function updateSeatSelection(seats) {
+	    $('.seat').removeClass('reserved selected').addClass('available'); // 초기화
+
+	    seats.forEach(seat => {
+	        let seatElement = $(`[data-seat='${seat.row}${seat.col}']`);
+	        if (seat.isReserved) {
+	            seatElement.removeClass('available').addClass('reserved');
+	        }
+	    });
+	}
 
     
 	

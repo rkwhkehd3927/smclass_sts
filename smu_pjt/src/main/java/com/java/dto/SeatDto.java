@@ -38,13 +38,13 @@ public class SeatDto {
 
     @Column(name = "is_reserved", nullable = false)
     private boolean isReserved; // 예약 여부
+    
+//    @Column(name = "seat_status", nullable = false, length = 20)
+//    private String seatStatus;  // "예약 가능", "예약됨", "점검 중" 등
 
     // ConcertSchedule와의 관계 설정 (ManyToOne)
     @ManyToOne
     @JoinColumn(name = "schedule_no", nullable = false) // 외래 키 설정
     private ConcertScheduleDto concertScheduleDto; 
 	
-	
-	
-
 }

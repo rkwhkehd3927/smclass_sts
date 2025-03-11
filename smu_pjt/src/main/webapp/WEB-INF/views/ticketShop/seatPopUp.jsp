@@ -30,7 +30,13 @@
 		            ${schedule.scheduleDate} ${schedule.scheduleStartTime}
 		        </option>
 		    </c:forEach>
+		    
         </select>
+	    <!-- 디버깅용: 데이터 확인 -->
+		<p>콘서트 일정 개수: ${schedules.size()}</p>
+		<c:forEach var="s" items="${schedules}">
+		    <p>${s.scheduleNo} - ${s.scheduleDate} ${s.scheduleStartTime}</p>
+		</c:forEach>
         <div class="logo"></div> <!-- 로고 이미지 -->
     </div>
     <div class="popup">

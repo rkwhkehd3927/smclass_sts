@@ -145,23 +145,23 @@
     <!-- 제품 목록 -->
     <div class="product-list">
       <!-- 예시 상품 1 (품절) -->
-      <div class="product-item sold-out-item" data-category="Category1">
+      <div class="product-item sold-out-item" data-category="Category1" data-id="${saleConcertDto.concertDto.concertNo}">
         <div class="product-image-container">
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 1" />
           <span class="sold-out-label">Sold Out</span>
         </div>
         <div class="product-name">Product 1 Name</div>
-        <div class="product-price">$49.99</div>
+        <div class="product-price"></div>
         <div class="product-feature">단독판매</div>
       </div>
 
       <!-- 예시 상품 2 -->
-      <div class="product-item" data-category="Category1">
+      <div class="product-item" data-category="Category1" data-id="${saleConcertDto.concertDto.concertNo}">
         <div class="product-image-container">
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 2" />
         </div>
         <div class="product-name">Product 2 Name</div>
-        <div class="product-price">$29.99</div>
+        <div class="product-price"></div>
         <div class="product-feature">단독판매</div>
       </div>
 
@@ -171,11 +171,11 @@
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 3" />
         </div>
         <div class="product-name">Product 3 Name</div>
-        <div class="product-price">$19.99</div>
+        <div class="product-price"></div>
       </div>
       
       <!-- 예시 상품 (Live1) -->
-      <div class="product-item" data-category="Category-live">
+      <div class="product-item" data-category="Category-live" data-id="${saleConcertDto.concertDto.concertNo}">
         <div class="product-image-container">
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 3" />
         </div>
@@ -190,7 +190,7 @@
           <span class="sold-out-label">Sold Out</span>
         </div>
         <div class="product-name">Product 4 Name</div>
-        <div class="product-price">$9.99</div>
+        <div class="product-price"></div>
         <div class="product-feature">단독판매</div>
       </div>
       
@@ -211,7 +211,7 @@
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 5" />
         </div>
         <div class="product-name">Product 5 Name</div>
-        <div class="product-price">$39.99</div>
+        <div class="product-price"></div>
         <div class="product-feature">단독판매</div>
       </div>
 
@@ -221,7 +221,7 @@
           <img class="product-image" src="/images/ticket/item01.jpg" alt="Product 6" />
         </div>
         <div class="product-name">Product 6 Name</div>
-        <div class="product-price">$59.99</div>
+        <div class="product-price"></div>
       </div>
       <!-- 필요한 만큼 추가 -->
     </div>

@@ -30,5 +30,12 @@ $(document).ready(function() {
         alert('다음 단계로 넘어갑니다.');
 		window.location.href = '/ticketShop/offlineTicketView';
     });
+	
+	$(".product-item").on("click", function () {
+        let concertId = $(this).data("id"); // 해당 상품의 concert_no 값 가져오기
+        if (concertId) {
+            window.location.href = "ticketDetail.jsp?id=" + concertId;
+        }
+    });
     
 });

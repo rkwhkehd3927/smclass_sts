@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,18 +27,21 @@ public class SeatController {
 	
 	// 좌석 팝업 오픈
 	@GetMapping("/ticketShop/seatPopUp")
-	public String seatPopUp() {
+	public String seatPopUp(Model model) {
+		List<ConcertScheduleDto> schedules = seatService.getAllSchedules(); // 콘서트 일정 조회
+		model.addAttribute("schedules", schedules); // jsp 로 전달
+		
 		return "ticketShop/seatPopUp";
 	}
 	
 	// 선택한 날짜에 해당하는 좌석 정보를 가져오는 API
 	@PostMapping("/ticketShop/seatPopUp")
-//	@GetMapping("/seatList")
-	public ResponseEntity<List<SeatDto>> getSeatsBySchedule(ConcertScheduleDto concertscheduledto, Integer scheduleNo) {
-//		scheduleNo = concertscheduledto
-		List<SeatDto> seats = seatService.getSeatsBySchedule(scheduleNo);
-        return ResponseEntity.ok(seats);
-    }
+	public ResponseEntity<List<SeatDto>> getSeatsBySchedule(@RequestParam("scheduleNo") Integer scheduleNo) {
+	    List<SeatDto> seats = seatService.getSeatsBySchedule(scheduleNo);
+	    System.out.println("List<SeatDto> seats: "+seats);
+	    return ResponseEntity.ok(seats);
+	}
+	// ?scheduleNo=값
 	
 	
 	

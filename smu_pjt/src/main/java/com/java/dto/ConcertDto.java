@@ -43,8 +43,7 @@ public class ConcertDto {
     @Column(name = "concert_end_datetime", nullable = false)
     private LocalDateTime concertEndDatetime; // 콘서트 종료 시간
 
-    @Column(name = "rsv_open_date", nullable = false)
-    private LocalDate rsvOpenDate; // 예약 시작 날짜
+    
 
     @Column(name = "location", nullable = false, length = 255)
     private String location; // 장소
@@ -57,12 +56,18 @@ public class ConcertDto {
 	
 	
 	@ManyToOne
-    @JoinColumn(name = "artist_no", nullable = true) // Artist와의 관계
+    @JoinColumn(name = "artist_no", nullable = false) // Artist와의 관계
     private ArtistDto artistDto; // 아티스트 데이터와 연결
 	
 	
 	// Concert와 ConcertSchedule 간의 관계 설정 (1:N 관계)
     @OneToMany(mappedBy = "concertDto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ConcertScheduleDto> schedules;
+    private List<ConcertScheduleDto> schedules; // 콘서트의 전체 일정
+    
+    @OneToMany(mappedBy = "concertDto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TicketDto> tickets;  // 콘서트의 모든 티켓
+    
+    @OneToMany(mappedBy = "concertDto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SaleConcertDto> saleConcerts; // 콘서트의 판매 정보 리스트
 
 }

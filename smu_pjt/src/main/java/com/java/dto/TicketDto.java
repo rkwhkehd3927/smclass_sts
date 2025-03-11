@@ -36,7 +36,7 @@ public class TicketDto {
     private String ticketTitle; 		// 티켓 이름
 
     @Column(name = "ticket_content", length = 1000)
-    private String ticketContent; 		// 티켓 설명
+    private String ticketContent; 		// 티켓 설명(좌석, 온라인)
 
     @Column(name = "ticket_price", nullable = false)
     private int ticketPrice; 		// 가격
@@ -64,6 +64,15 @@ public class TicketDto {
     private boolean isRestreamingAllowed; // 재스트리밍 가능 여부 (온라인 티켓용)
     
     @ManyToOne
-    @JoinColumn(name = "concert_no", nullable = true)  // 외래키로 concert와 연결
+    @JoinColumn(name = "concert_no", nullable = false)  // 외래키로 concert와 연결
     private ConcertDto concertDto;
+    
+    @ManyToOne
+    @JoinColumn(name = "schedule_no", nullable = false)  // 외래키 추가
+    private ConcertScheduleDto concertScheduleDto;
+    
+    @ManyToOne
+    @JoinColumn(name = "seat_no", nullable = true)  // 온라인 티켓은 좌석이 없으므로 NULL 허용
+    private SeatDto seatDto; // 좌석 정보
+
 }
