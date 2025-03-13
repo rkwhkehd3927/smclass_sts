@@ -110,6 +110,7 @@ body {
 .r.selected { background-color: purple; }
 .s.selected { background-color: cyan; }
 .a.selected { background-color: navy; color: white; }
+.reserved { background-color: #A9A9A9;}
     
 
 

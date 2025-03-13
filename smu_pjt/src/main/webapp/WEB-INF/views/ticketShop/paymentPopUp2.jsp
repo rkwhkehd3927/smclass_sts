@@ -101,7 +101,7 @@
             </tr>
         </table>
         <button class="prevStepBtn">이전단계</button>
-        <button class="nextStepBtn">결제하기</button>
+        <button class="nextStepPayBtn">결제하기</button>
     </div>
 </div>
 </body>

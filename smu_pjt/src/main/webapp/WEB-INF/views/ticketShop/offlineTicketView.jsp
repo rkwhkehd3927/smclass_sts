@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>티켓 예매</title>
+    <title>오프라인 티켓 예매</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <link rel="stylesheet" href="../css/ticket/offlineTicketView.css">
@@ -42,12 +42,23 @@
                 <img src="/images/ticket/ticketInfo_Tsample.jpg" alt="Yuuri Arena Live 2025 at Seoul">
             </div>
             <div class="ticket-info">
-                <span class="sold-out">판매중</span>
-                <h1>[TICKET] YUURI ARENA LIVE 2025 at SEOUL</h1>
-                <p class="artist">유우리 (YUURI)</p>
+                <span class="sold-out">
+					<c:choose>
+				        <c:when test="${saleConcertDto[0].saleStartDate <= today}">
+				            판매중
+				        </c:when>
+				        <c:otherwise>
+				            오픈전
+				        </c:otherwise>
+				    </c:choose>
+				</span>
+                <h1>[TICKET] ${concertDto.concertName}</h1>
+                <p class="artist">${concertDto.artistDto.artistGroupName}</p>
                 <select class="date-select">
-                    <option>DAY 1 : 2025-05-03 18:00 (KST)</option>
-                    <option>DAY 2 : 2025-05-04 17:00 (KST)</option>
+                	<option value="">공연 날짜 선택</option>
+                    <c:forEach var="schedule" items="${concertSchedules}" varStatus="status">
+		                <option value="${schedule.scheduleNo}">DAY ${status.count} : ${schedule.scheduleDate} ${schedule.scheduleStartTime} (KST)</option>
+		            </c:forEach>
                 </select>
     			<input type="hidden" id="isLoggedIn" value="${memberId}">
                 <button class="buy-button">구매하기</button>

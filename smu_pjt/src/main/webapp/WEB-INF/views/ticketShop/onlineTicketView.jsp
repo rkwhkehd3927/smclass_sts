@@ -6,14 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>티켓 예매</title>
+    <title>온라인 티켓 예매</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <link rel="stylesheet" href="../css/ticket/offlineTicketView.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <script src="../js/ticket/offlineTicketView.js"></script>
+    <script src="../js/ticket/onlineTicketView.js"></script>
     
 </head>
 <body>
@@ -41,12 +41,12 @@
             </div>
             <div class="ticket-info">
                 <span class="sold-out">판매중</span>
-                <h1>[LIVE] YUURI ARENA LIVE 2025 at SEOUL</h1>
-                <p class="artist">유우리 (YUURI)</p>
+                <h1>[LIVE] ${concertDto.concertName}</h1>
+                <p class="artist">${concertDto.artistDto.artistGroupName}</p>
                 <select class="date-select">
-                    <option>[A] FULL PACKAGE</option>
-                    <option>[B] LIVE STREAMING ONLY</option>
-                    <option>[C] REPLAY ONLY</option>
+                    <option value="FULL PACKAGE">[A] FULL PACKAGE</option>
+                    <option value="LIVE STREAMING ONLY">[B] LIVE STREAMING ONLY</option>
+                    <option value="REPLAY ONLY">[C] REPLAY ONLY</option>
                 </select>
     			<input type="hidden" id="isLoggedIn" value="${memberId}">
                 <button class="buy-button">구매하기</button>

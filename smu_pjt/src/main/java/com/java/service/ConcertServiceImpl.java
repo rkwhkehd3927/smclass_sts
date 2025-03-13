@@ -1,10 +1,13 @@
 package com.java.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.ConcertDto;
+import com.java.dto.ConcertScheduleDto;
 import com.java.dto.SaleConcertDto;
 import com.java.repository.ConcertRepository;
 
@@ -26,6 +29,12 @@ public class ConcertServiceImpl implements ConcertService {
 	@Override
 	public Integer getBookedTickets(Integer concertNo) {
 		return concertRepository.countReservedSeats(concertNo);
+	}
+
+	// 해당 콘서트의 일정 리스트 조회
+	@Override
+	public List<ConcertScheduleDto> getConcertSchedulesByConcertNo(Integer concertNo) {
+		return concertRepository.findSchedulesByConcertNo(concertNo);
 	}
 	
 	

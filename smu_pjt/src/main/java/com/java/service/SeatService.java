@@ -11,6 +11,13 @@ public interface SeatService {
 	List<SeatDto> getSeatsBySchedule(Integer scheduleNo);
 
 	// 콘서트 일정 목록 가져오기
-	List<ConcertScheduleDto> getAllSchedules(); 
+	List<ConcertScheduleDto> getAllSchedules();
+
+	// 선택한 seatNo 리스트에 해당하는 좌석만 가져옴
+//	List<SeatDto> getSeatsByIds(List<Integer> selectedSeatNos);
+
+
+//	List<SeatDto> getSeatsByIds(Integer integer, Integer integer2);
+
 
 }

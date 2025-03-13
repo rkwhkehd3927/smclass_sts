@@ -1,7 +1,10 @@
 package com.java.service;
 
 
+import java.util.List;
+
 import com.java.dto.ConcertDto;
+import com.java.dto.ConcertScheduleDto;
 import com.java.dto.SaleConcertDto;
 
 public interface ConcertService {
@@ -11,7 +14,12 @@ public interface ConcertService {
 	
 	
 	// 예약된 좌석 개수 가져오기
-	Integer getBookedTickets(Integer concertNo); 
+	Integer getBookedTickets(Integer concertNo);
+
+
+	// 해당 콘서트의 일정 리스트 조회
+	List<ConcertScheduleDto> getConcertSchedulesByConcertNo(Integer concertNo);
+
 
 
 }

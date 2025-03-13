@@ -1,5 +1,7 @@
 package com.java.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.dto.ArtistDto;
 import com.java.dto.ConcertDto;
+import com.java.dto.ConcertScheduleDto;
 import com.java.dto.MemberDto;
 import com.java.dto.SaleConcertDto;
 import com.java.service.ConcertService;
@@ -78,11 +81,40 @@ public class TicketController {
 	
 	// 온라인 티켓 구매 페이지 - get
 	@GetMapping("/ticketShop/onlineTicketView")
-	public String onlineTicketView(String memberId, Model model) {
+	public String onlineTicketView(@RequestParam("concertNo") Integer concertNo, String memberId, Model model) {
 		memberId = (String)session.getAttribute("session_id");
 		System.out.println("세션에 저장된 ID 1: " + memberId);
+		
+		// 콘서트 정보 조회
+		ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
+		System.out.println("concertDto: "+concertDto);
+		
+		// 해당 콘서트의 판매 티켓 리스트 (판매 가능 기간, 전체 티켓 개수, 남은 티켓 개수, 솔드아웃 여부 등)
+        List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertByConcertNo(concertNo);
+        
+        // 해당 콘서트의 일정 리스트 조회
+        List<ConcertScheduleDto> concertSchedules = concertService.getConcertSchedulesByConcertNo(concertNo);
+        
+        System.out.println("concertNo: "+ concertNo);
+        System.out.println("concertSchedules: " + concertSchedules);
+        
+        // 콘서트 일정이 정상적으로 불러와지는지 확인
+        System.out.println("콘서트 일정 개수: " + concertSchedules.size());
+        for (ConcertScheduleDto schedule : concertSchedules) {
+            System.out.println("scheduleNo: " + schedule.getScheduleNo() + ", 날짜: " + schedule.getScheduleDate());
+        }
+        
+        // 오늘 날짜 추가
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+        
+		
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
+		model.addAttribute("concertDto", concertDto);
+		model.addAttribute("saleConcertDto", saleConcerts);
+		model.addAttribute("concertSchedules", concertSchedules); 
+		model.addAttribute("today", today); 
 		return "ticketShop/onlineTicketView";
 		
 	}
@@ -102,22 +134,39 @@ public class TicketController {
 	
 	// 오프라인 티켓 구매 페이지- get (파라미터로 concertNo 전달)
 	@GetMapping("/ticketShop/offlineTicketView")
-	public String offlineTicketView(@RequestParam("concertNO") Integer concertNo ,String memberId, Model model) {
+	public String offlineTicketView(@RequestParam("concertNo") Integer concertNo, String memberId, Model model) {
 		memberId = (String)session.getAttribute("session_id");
 		System.out.println("세션에 저장된 ID 1: " + memberId);
 		
 		// 콘서트 정보 조회
 		ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
-		
 		System.out.println("concertDto: "+concertDto);
 		
         // 해당 콘서트의 판매 티켓 리스트 (판매 가능 기간, 전체 티켓 개수, 남은 티켓 개수, 솔드아웃 여부 등)
         List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertByConcertNo(concertNo);
+        
+        // 해당 콘서트의 일정 리스트 조회
+        List<ConcertScheduleDto> concertSchedules = concertService.getConcertSchedulesByConcertNo(concertNo);
+
+        System.out.println("concertNo: " + concertNo);
+        System.out.println("concertSchedules: " + concertSchedules);
+        
+        // 콘서트 일정이 정상적으로 불러와지는지 확인
+        System.out.println("콘서트 일정 개수: " + concertSchedules.size());
+        for (ConcertScheduleDto schedule : concertSchedules) {
+            System.out.println("scheduleNo: " + schedule.getScheduleNo() + ", 날짜: " + schedule.getScheduleDate());
+        }
+        
+        // 오늘 날짜 추가
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
 		
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
 		model.addAttribute("concertDto", concertDto);
 		model.addAttribute("saleConcertDto", saleConcerts);
+		model.addAttribute("concertSchedules", concertSchedules); 
+		model.addAttribute("today", today); 
 		return "ticketShop/offlineTicketView";
 		
 	}
@@ -136,6 +185,11 @@ public class TicketController {
 	}	
 
 	
+	// 티켓 거래 양도 페이지 - get
+	@GetMapping("/ticketShop/onlinePayPopUp")
+	public String onlinePayPopUp() {
+		return "ticketShop/onlinePayPopUp";
+	}
 	
 	// ~~~~~~~ 티켓거래
 	

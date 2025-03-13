@@ -27,6 +27,9 @@ public class SeatDto {
 	@Column(name = "seat_no", nullable = false)
     private int seatNo; // 좌석 고유 번호
 
+	@Column(name = "seat_floor", length = 10, nullable = true)
+	private String seatFloor; // 좌석 층 (선택 사항)
+	
     @Column(name = "seat_level", length = 50, nullable = true)
     private String seatLevel; // 좌석 레벨 (선택 사항)
 
@@ -35,6 +38,9 @@ public class SeatDto {
 
     @Column(name = "seat_col", nullable = false)
     private int seatCol; // 좌석 열
+    
+    @Column(name = "seat_price", nullable = false)
+    private int seatPrice; 		// 가격
 
     @Column(name = "is_reserved", nullable = false)
     private boolean isReserved; // 예약 여부

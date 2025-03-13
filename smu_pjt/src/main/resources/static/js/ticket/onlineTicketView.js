@@ -36,39 +36,38 @@ $(document).ready(function () {
 	// 구매 하기
     buyButton.click(function (event) {
         event.preventDefault(); // 기본 동작 방지
-		
-
+	
 		var memberId = $('#isLoggedIn').val();
 		var selectedScheduleNo = $(".date-select").val(); // 선택한 scheduleNo 가져오기
-
-        // 서버에서 로그인 여부를 확인하는 로직 (예제: hidden input 값 활용)
-		// memberId가 null이거나 빈 값인지 확인
-       if (!memberId || memberId.trim() === "") {
-           alert("로그인 후 이용가능한 서비스입니다."); // 경고 메시지 출력
-           window.location.href = "/login"; // 로그인 페이지로 이동
-       } else {
-		   if (!selectedScheduleNo || selectedScheduleNo.trim() === "") {
-	           alert("콘서트 일정을 선택해주세요.");
-	           return;
-	       }
-		   // 선택한 일정 정보를 seatPopUp에 넘겨서 오픈
-           window.open('/ticketShop/seatPopUp?scheduleNo=' + selectedScheduleNo, 'popup', 'width=1100,height=710');
-       }
-    });
-});
-
-function showDetails() {
-    $("#event-content").show();
-    $("#notice-content").hide();
-    
-    $(".details-faq button").eq(0).addClass("active");
-    $(".details-faq button").eq(1).removeClass("active");
-}
-
-function showNotice() {
-    $("#event-content").hide();
-    $("#notice-content").show();
-    
-    $(".details-faq button").eq(0).removeClass("active");
-    $(".details-faq button").eq(1).addClass("active");
-}
+	
+	       // 서버에서 로그인 여부를 확인하는 로직 (예제: hidden input 값 활용)
+		   // memberId가 null이거나 빈 값인지 확인
+	       if (!memberId || memberId.trim() === "") {
+	           alert("로그인 후 이용가능한 서비스입니다."); // 경고 메시지 출력
+	           window.location.href = "/login"; // 로그인 페이지로 이동
+	       } 
+//		   else {
+//			   if (!selectedScheduleNo || selectedScheduleNo.trim() === "") {
+//	           alert("콘서트 일정을 선택해주세요.");
+//	           return;
+//	       }
+//		    선택한 일정 정보를 seatPopUp에 넘겨서 오픈
+           window.open('/ticketShop/onlinePayPopUp', 'popup', 'width=500,height=600');
+	    });
+	});
+	
+	function showDetails() {
+	    $("#event-content").show();
+	    $("#notice-content").hide();
+	    
+	    $(".details-faq button").eq(0).addClass("active");
+	    $(".details-faq button").eq(1).removeClass("active");
+	}
+	
+	function showNotice() {
+	    $("#event-content").hide();
+	    $("#notice-content").show();
+	    
+	    $(".details-faq button").eq(0).removeClass("active");
+	    $(".details-faq button").eq(1).addClass("active");
+	}

@@ -17,26 +17,32 @@
 </head>
 
 <body>
+	<%-- 세션 확인용 (추후 삭제) --%>
+	<%= request.getSession().getAttribute("session_id") %> 
+	<script>
+		var sessionId = "<%= request.getSession().getAttribute("session_id") %>";
+	
+	    if (!sessionId || sessionId === "null") {
+	        alert("재 로그인 필요");
+	        window.close(); // 현재 창 닫기
+	    }
+	</script>
 	<div class="header">
         <select class="date-select">
-            <%-- 
-            <option value="${scheduleNo}">2025년 3월 1일 16:00</option>
-            <option value="${scheduleNo}">2025년 3월 2일 18:00</option>
-            <option value="${scheduleNo}">2025년 3월 3일 20:00</option>
-            --%>
             <!-- 추가 날짜 및 시간 옵션 -->
             <c:forEach var="schedule" items="${schedules}">
-		        <option value="${schedule.scheduleNo}">
+		        <option value="${schedule.scheduleNo}"
+		        	<c:if test="${schedule.scheduleNo == selectedScheduleNo}">selected</c:if>>
 		            ${schedule.scheduleDate} ${schedule.scheduleStartTime}
 		        </option>
 		    </c:forEach>
 		    
         </select>
 	    <!-- 디버깅용: 데이터 확인 -->
-		<p>콘서트 일정 개수: ${schedules.size()}</p>
+		<%-- <p>콘서트 일정 개수: ${schedules.size()}</p>
 		<c:forEach var="s" items="${schedules}">
 		    <p>${s.scheduleNo} - ${s.scheduleDate} ${s.scheduleStartTime}</p>
-		</c:forEach>
+		</c:forEach> --%>
         <div class="logo"></div> <!-- 로고 이미지 -->
     </div>
     <div class="popup">
