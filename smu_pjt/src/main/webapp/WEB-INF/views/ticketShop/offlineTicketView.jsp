@@ -44,7 +44,7 @@
             <div class="ticket-info">
                 <span class="sold-out">
 					<c:choose>
-				        <c:when test="${saleConcertDto[0].saleStartDate <= today}">
+				        <c:when test="${saleConcertDto.saleStartDate <= today}">
 				            판매중
 				        </c:when>
 				        <c:otherwise>

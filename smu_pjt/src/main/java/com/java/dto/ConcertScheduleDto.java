@@ -25,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = {"saleConcertDto"})
+@ToString(exclude = {"saleConcertDto","tickets","seats"})
 public class ConcertScheduleDto {
 	
 	@Id

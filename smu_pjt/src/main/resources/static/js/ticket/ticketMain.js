@@ -39,7 +39,7 @@ $(document).ready(function() {
 	//		alert("concertId: " + concertId + "\ncategory: " + category); // 확인용
 			console.log("saleConcertId:", saleConcertId);
 			console.log("category:", category);
-	        if (concertId) {
+	        if (saleConcertId) {
 				if (category === "Category-live") {
 		            window.location.href = "/ticketShop/onlineTicketView?saleConcertNo=" + saleConcertId;
 		        } else {

@@ -32,6 +32,10 @@ public class SaleConcertServiceImpl implements SaleConcertService {
 	// 특정 saleConcertNo에 해당하는 콘서트 판매 정보 조회
 	@Override
 	public SaleConcertDto getSaleConcertBySaleConcertNo(Integer saleConcertNo) {
+		
+		System.out.println("데이터베이스에서 조회할 saleConcertNo: " + saleConcertNo);
+		
+		
 		return saleConcertRepository.findBySaleConcertNo(saleConcertNo);
 	}
 
