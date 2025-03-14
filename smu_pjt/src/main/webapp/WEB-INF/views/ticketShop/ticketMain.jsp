@@ -118,6 +118,8 @@
 	            
 	            <div class="product-name">${saleConcertDto.concertDto.concertName}</div>
 	            
+	            <div class="product-desc">${saleConcertDto.saleConcertDesc}</div>
+	            
 	            <div class="product-price">
 	            	<c:if test="${saleConcertDto.concertPrice != null}">
 		                ${saleConcertDto.concertPrice}

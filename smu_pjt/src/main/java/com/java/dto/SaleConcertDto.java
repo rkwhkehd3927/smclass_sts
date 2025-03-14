@@ -59,14 +59,15 @@ public class SaleConcertDto {
     @Column(name = "concert_price", nullable = true)
     private Integer concertPrice;  // 티켓 가격 (온라인만 가격이 존재, 오프라인은 null)
 
+    @Column(name = "sale_concert_desc", length = 300, nullable = true)
+    private String saleConcertDesc; // 판매 아이템 설명 (온라인은 옵션용)
+    
     @Column(name = "sale_concert_image", length = 200, nullable = true)
     private String saleConcertImage; // 판매 썸네일 이미지
     
-    @Column(name = "sale_concert_image_offline", length = 200, nullable = true)
-    private String saleConcertImageOffline; // 판매 설명 오프라인 이미지
+    @Column(name = "sale_concert_desc_image", length = 200, nullable = true)
+    private String saleConcertDescImage; // 판매 설명 이미지
     
-    @Column(name = "sale_concert_image_online", length = 200, nullable = true)
-    private String saleConcertImageOnline; // 판매 설명 온라인 이미지
     
     /** 
      * ✅ 프론트에서 솔드아웃 여부를 체크할 때 사용하는 메서드

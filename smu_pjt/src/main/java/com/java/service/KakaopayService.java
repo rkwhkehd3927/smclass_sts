@@ -6,8 +6,8 @@ import com.java.dto.ReadyResponseDto;
 
 public interface KakaopayService {
 	
-	ReadyResponseDto payReady(OrderDto odto);
-
-	ApproveResponseDto payApprove(String tid, String pgToken);
+//	ReadyResponseDto payReady(OrderDto odto);
+//
+//	ApproveResponseDto payApprove(String tid, String pgToken);
 
 }

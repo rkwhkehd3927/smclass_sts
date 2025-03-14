@@ -134,12 +134,15 @@ public class SeatController {
 			@RequestBody Map<String, Object> requestSeatData, Model model) {
 	    System.out.println("선택된 좌석: " + requestSeatData.get("selectedSeats"));
 	    
+//	    System.out.println("📌 받은 데이터: " + requestSeatData); // 확인용 로그
 //	    List<Integer> selectedSeatNos = (List<Integer>) requestSeatData.get("selectedSeats");
-//		System.out.println("선택된 좌석 번호들: " + selectedSeatNos.get(0));
 //		System.out.println("선택된 좌석 번호들: " + selectedSeatNos);
-//	    
-//		List<SeatDto> selectedSeats = seatService.getSeatsByIds(selectedSeatNos.get(0),selectedSeatNos.get(1));
+//	    List<SeatDto> selectedSeats = seatService.getSeatsByIds(selectedSeatNos);
+//	    model.addAttribute("selectedSeats", selectedSeats);
 	    
+	    
+//		System.out.println("선택된 좌석 번호들: " + selectedSeatNos.get(0));
+//		List<SeatDto> selectedSeats = seatService.getSeatsByIds(selectedSeatNos.get(0),selectedSeatNos.get(1));
 //		SeatDto seatdto = seatService.getSeatsById(selectedSeatNos.get(0));
 		
 	    
@@ -157,37 +160,37 @@ public class SeatController {
 	
 	
 	//카카오페이페이지 결제
-	@ResponseBody
-	@PostMapping("/pay/orderPay")
-	public ReadyResponseDto orderPay(OrderItemDto odto,TicketDto tdto) {
-		log.info("tdto name : "+tdto.getTicketTitle());
-		System.out.println("tdto name : "+tdto.getTicketTitle());
-		
-        // 카카오 결제 준비하기
-        ReadyResponseDto readyResponseDto = kakaopayService.payReady(odto,tdto);
-        
-        // 세션에 결제 고유번호(tid) 저장
-        SessionUtils.addAttribute("tid", readyResponseDto.getTid());
-        log.info("결제 고유번호: " + readyResponseDto.getTid());
-        return readyResponseDto;
-		
-	}
-	
-	@GetMapping("/pay/completed")
-    public String payCompleted(@RequestParam("pg_token") String pgToken) {
-    
-		//세션에서 tid값을 가져옴.
-        String tid = SessionUtils.getStringAttributeValue("tid");
-        log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
-        log.info("결제 고유번호: " + tid);
-
-        // 카카오 결제 요청하기
-        ApproveResponseDto approveResponseDto = kakaopayService.payApprove(tid, pgToken);
-
-        System.out.println("승인날짜 : "+approveResponseDto.getApproved_at());
-        
-        return "redirect:/success";
-    }
+//	@ResponseBody
+//	@PostMapping("/pay/orderPay")
+//	public ReadyResponseDto orderPay(OrderItemDto odto,TicketDto tdto) {
+//		log.info("tdto name : "+tdto.getTicketTitle());
+//		System.out.println("tdto name : "+tdto.getTicketTitle());
+//		
+//        // 카카오 결제 준비하기
+//        ReadyResponseDto readyResponseDto = kakaopayService.payReady(odto,tdto);
+//        
+//        // 세션에 결제 고유번호(tid) 저장
+//        SessionUtils.addAttribute("tid", readyResponseDto.getTid());
+//        log.info("결제 고유번호: " + readyResponseDto.getTid());
+//        return readyResponseDto;
+//		
+//	}
+//	
+//	@GetMapping("/pay/completed")
+//    public String payCompleted(@RequestParam("pg_token") String pgToken) {
+//    
+//		//세션에서 tid값을 가져옴.
+//        String tid = SessionUtils.getStringAttributeValue("tid");
+//        log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
+//        log.info("결제 고유번호: " + tid);
+//
+//        // 카카오 결제 요청하기
+//        ApproveResponseDto approveResponseDto = kakaopayService.payApprove(tid, pgToken);
+//
+//        System.out.println("승인날짜 : "+approveResponseDto.getApproved_at());
+//        
+//        return "redirect:/success";
+//    }
 		
 		
 

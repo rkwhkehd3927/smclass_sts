@@ -9,8 +9,11 @@ public interface SaleConcertService {
 	// 현재 날짜가 rsvOpenDate 이후인 판매 콘서트 조회 (메인 페이지에 출력)
 	List<SaleConcertDto> getOpenSaleConcerts();
 	
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회
+	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회 - 오프라인용
 	List<SaleConcertDto> getSaleConcertByConcertNo(Integer concertNo);
+
+	// 특정 concertNo에 해당하는 판매 콘서트 정보 (단일 객체) 조회 - 온라인용
+	SaleConcertDto getSingleSaleConcertByConcertNo(Integer concertNo);
 
 	
 

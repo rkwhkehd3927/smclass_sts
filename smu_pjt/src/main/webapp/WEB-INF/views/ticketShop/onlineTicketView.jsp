@@ -40,13 +40,21 @@
                 <img src="/images/ticket/ticketInfo_Tsample.jpg" alt="Yuuri Arena Live 2025 at Seoul">
             </div>
             <div class="ticket-info">
-                <span class="sold-out">판매중</span>
+                <span class="sold-out">
+					<c:choose>
+				        <c:when test="${saleConcertDto[0].saleStartDate <= today}">
+				            판매중
+				        </c:when>
+				        <c:otherwise>
+				            오픈전
+				        </c:otherwise>
+				    </c:choose>
+				</span>
                 <h1>[LIVE] ${concertDto.concertName}</h1>
                 <p class="artist">${concertDto.artistDto.artistGroupName}</p>
                 <select class="date-select">
-                    <option value="FULL PACKAGE">[A] FULL PACKAGE</option>
-                    <option value="LIVE STREAMING ONLY">[B] LIVE STREAMING ONLY</option>
-                    <option value="REPLAY ONLY">[C] REPLAY ONLY</option>
+                    <option value="">티켓 타입 선택</option>
+                    <option value="${saleConcertDto.saleConcertNo}">${saleConcertDto.saleConcertDesc}</option>
                 </select>
     			<input type="hidden" id="isLoggedIn" value="${memberId}">
                 <button class="buy-button">구매하기</button>

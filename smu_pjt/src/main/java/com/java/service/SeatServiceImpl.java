@@ -45,7 +45,8 @@ public class SeatServiceImpl implements SeatService {
 
 //	 선택한 seatNo 리스트에 해당하는 좌석만 가져옴
 //	@Override
-//	public List<SeatDto> getSeatsByIds(Integer integer, Integer integer2) {
+//	public List<SeatDto> getSeatsByIds(List<Integer> selectedSeatNos) {
+//		System.out.println("🔍 검색할 seatNos: " + seatNos);  // 🛑 seatNos 값 확인
 //		return seatRepository.findBySeatNoIn(selectedSeatNos);
 //	}
 
