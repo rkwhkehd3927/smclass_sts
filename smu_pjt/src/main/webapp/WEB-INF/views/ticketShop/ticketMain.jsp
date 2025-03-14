@@ -106,7 +106,7 @@
 			<div class="product-item 
 				${saleConcertDto.isSoldOut(bookedTickets) ? 'sold-out-item' : ''}" 
         		 data-category="${saleConcertDto.ticketType == 'online' ? 'Category-live' : 'Category-offline'}" 
-        		 data-id="${saleConcertDto.concertDto.concertNo}">
+        		 data-id="${saleConcertDto.saleConcertNo}">
 <%-- 	        <div class="product-item sold-out-item" data-category="Category1" data-id="${saleConcertDto.concertDto.concertNo}"> --%>
 	            
 	            <div class="product-image-container">

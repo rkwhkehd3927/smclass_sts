@@ -63,9 +63,9 @@ public class TicketDto {
     @Column(name = "is_restreaming_allowed", nullable = false)
     private boolean isRestreamingAllowed; // 재스트리밍 가능 여부 (온라인 티켓용)
     
-    @ManyToOne
-    @JoinColumn(name = "concert_no", nullable = false)  // 외래키로 concert와 연결
-    private ConcertDto concertDto;
+//    @ManyToOne
+//    @JoinColumn(name = "concert_no", nullable = false)  // 외래키로 concert와 연결
+//    private ConcertDto concertDto;
     
     @ManyToOne
     @JoinColumn(name = "schedule_no", nullable = false)  // 외래키 추가

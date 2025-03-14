@@ -10,10 +10,11 @@ public interface SaleConcertService {
 	List<SaleConcertDto> getOpenSaleConcerts();
 	
 	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회 - 오프라인용
-	List<SaleConcertDto> getSaleConcertByConcertNo(Integer concertNo);
+//	List<SaleConcertDto> getSaleConcertBySaleConcertNo(Integer concertNo);
 
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 (단일 객체) 조회 - 온라인용
-	SaleConcertDto getSingleSaleConcertByConcertNo(Integer concertNo);
+	// 특정 saleConcertNo에 해당하는 판매 콘서트 정보 (단일 객체) 조회 - 온라인용
+//	SaleConcertDto getSingleSaleConcertBySaleConcertNo(Integer saleConcertNo);
+	SaleConcertDto getSaleConcertBySaleConcertNo(Integer saleConcertNo);
 
 	
 

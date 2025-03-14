@@ -1,7 +1,9 @@
 package com.java.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -22,7 +25,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = {"concertDto"})
+@ToString(exclude = {"concertDto","concertSchedules"})
 public class SaleConcertDto {
 
 	
@@ -33,10 +36,6 @@ public class SaleConcertDto {
     private int saleConcertNo; // 판매 콘서트 고유 번호
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "concert_no", nullable = false)
-	private ConcertDto concertDto;  // 콘서트 전체 기준
-
 
 	@Column(name = "total_ticket_count", nullable = true)
 	private Integer totalTicketCount;  // 해당 콘서트의 전체 티켓 개수 (온라인은 null)
@@ -68,6 +67,20 @@ public class SaleConcertDto {
     @Column(name = "sale_concert_desc_image", length = 200, nullable = true)
     private String saleConcertDescImage; // 판매 설명 이미지
     
+
+	@ManyToOne
+	@JoinColumn(name = "concert_no", nullable = false)
+	private ConcertDto concertDto;  // 콘서트 전체 기준
+	
+	@OneToMany(mappedBy = "saleConcertDto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ConcertScheduleDto> concertSchedules; // 해당 판매 단위의 스케줄 목록
+
+//    @OneToMany(mappedBy = "saleConcertDto", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<TicketDto> tickets; // 온라인 전용 티켓 리스트
+//
+//    @OneToMany(mappedBy = "saleConcertDto", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<SeatDto> seats; // 오프라인 전용 좌석 리스트
+
     
     /** 
      * ✅ 프론트에서 솔드아웃 여부를 체크할 때 사용하는 메서드
@@ -82,6 +95,8 @@ public class SaleConcertDto {
 //        return booked >= totalTicketCount;
     	return (bookedTickets != null && bookedTickets >= totalTicketCount);
 	}  // 솔드아웃 여부 판단 (true: 솔드아웃)
+    
+    
     
    
 }

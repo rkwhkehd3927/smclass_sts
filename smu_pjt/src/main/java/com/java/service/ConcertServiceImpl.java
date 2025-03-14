@@ -27,14 +27,14 @@ public class ConcertServiceImpl implements ConcertService {
 
 	// ✅ 예약된 좌석 개수 조회 메서드 추가
 	@Override
-	public Integer getBookedTickets(Integer concertNo) {
-		return concertRepository.countReservedSeats(concertNo);
+	public Integer getBookedTickets(Integer saleConcertNo) {
+		return concertRepository.countReservedSeats(saleConcertNo);
 	}
 
 	// 해당 콘서트의 일정 리스트 조회
 	@Override
-	public List<ConcertScheduleDto> getConcertSchedulesByConcertNo(Integer concertNo) {
-		return concertRepository.findSchedulesByConcertNo(concertNo);
+	public List<ConcertScheduleDto> getConcertSchedulesBySaleConcertNo(Integer saleConcertNo) {
+		return concertRepository.findSchedulesBySaleConcertNo(saleConcertNo);
 	}
 	
 	

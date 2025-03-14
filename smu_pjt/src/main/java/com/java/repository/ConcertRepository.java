@@ -18,13 +18,16 @@ public interface ConcertRepository extends JpaRepository<ConcertDto, Integer>{
 	// 콘서트 번호로 콘서트 조회
 	ConcertDto findByConcertNo(Integer concertNo);
 	
-	// ✅ concertNo 기준으로 예약된 좌석 개수 조회
-    @Query("SELECT COUNT(s) FROM SeatDto s WHERE s.concertScheduleDto.concertDto.concertNo = :concertNo AND s.isReserved = true")
-    int countReservedSeats(@Param("concertNo") Integer concertNo);
+	// ✅ saleConcertNo 기준으로 예약된 좌석 개수 조회
+//    @Query("SELECT COUNT(s) FROM SeatDto s WHERE s.concertScheduleDto.saleConcertDto.concertDto.concertNo = :concertNo AND s.isReserved = true")
+//    int countReservedSeats(@Param("saleConcertNo") Integer saleConcertNo);
+	
+	@Query("SELECT COUNT(s) FROM SeatDto s WHERE s.concertScheduleDto.saleConcertDto.saleConcertNo = :saleConcertNo AND s.isReserved = true")
+	int countReservedSeats(@Param("saleConcertNo") Integer saleConcertNo);
     
     // 해당 콘서트의 일정 리스트 조회
-    @Query("SELECT cs FROM ConcertScheduleDto cs WHERE cs.concertDto.concertNo = :concertNo ORDER BY cs.scheduleDate, cs.scheduleStartTime")
-	List<ConcertScheduleDto> findSchedulesByConcertNo(@Param("concertNo") Integer concertNo);
+    @Query("SELECT cs FROM ConcertScheduleDto cs WHERE cs.saleConcertDto.concertDto.concertNo = :concertNo ORDER BY cs.scheduleDate, cs.scheduleStartTime")
+	List<ConcertScheduleDto> findSchedulesBySaleConcertNo(@Param("saleConcertNo") Integer saleConcertNo);
 
 
 

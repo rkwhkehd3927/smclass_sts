@@ -54,14 +54,14 @@ public class TicketController {
 		        (existing, replacement) -> existing // 중복 시 기존 값 유지 (근데 어차피 saleConcertNo는 유일하니까 중복 안 생김!)
 		    ));
 
-
+		System.out.println("bookedTicketsMap: "+bookedTicketsMap);
 		
 		System.out.println("saleConcerts: "+saleConcerts);
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
 		// 콘서트 상품 리스트 불러오기
-		model.addAttribute("saleConcerts",saleConcerts);
-		model.addAttribute("bookedTicketsMap", bookedTicketsMap); // ✅ JSP에서 사용 가능하도록 추가
+		model.addAttribute("saleConcerts",saleConcerts); // 상품 리스트 데이터 전송 
+		model.addAttribute("bookedTicketsMap", bookedTicketsMap); // 예약 좌석 개수
 		return "ticketShop/ticketMain";
 	}
 	
@@ -81,26 +81,31 @@ public class TicketController {
 	
 	// 온라인 티켓 구매 페이지 - get
 	@GetMapping("/ticketShop/onlineTicketView")
-	public String onlineTicketView(@RequestParam("concertNo") Integer concertNo, String memberId, Model model) {
+	public String onlineTicketView(@RequestParam("saleConcertNo") Integer saleConcertNo, 
+			String memberId, Model model) {
 		memberId = (String)session.getAttribute("session_id");
 		System.out.println("세션에 저장된 ID 1: " + memberId);
 		
-		// 콘서트 정보 조회
-		ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
-		System.out.println("concertDto: "+concertDto);
+		// 해당 콘서트의 판매 정보
+		SaleConcertDto saleConcert = saleConcertService.getSaleConcertBySaleConcertNo(saleConcertNo);
+		
 		
 		// 해당 콘서트의 판매 티켓 리스트 (판매 가능 기간, 전체 티켓 개수, 남은 티켓 개수, 솔드아웃 여부 등) - 오프라인용
 //        List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertByConcertNo(concertNo);
 		
-		// 해당 콘서트의 판매 정보 (단일 객체 조회)
-	    SaleConcertDto saleConcert = saleConcertService.getSingleSaleConcertByConcertNo(concertNo);
-        
+		
 	    if (saleConcert == null) {
 	        System.out.println("❌ 해당 콘서트의 판매 정보가 없습니다.");
 	    } else {
 	        System.out.println("✅ 판매 정보 조회 성공: " + saleConcert.getSaleConcertDesc());
 	    }
 	    
+	    // SaleConcertDto에서 concertNo 가져오기
+	    Integer concertNo = saleConcert.getConcertDto().getConcertNo();
+	    
+	    // 콘서트 정보 조회
+	    ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
+	    System.out.println("concertDto: "+concertDto);
 	    
         // 해당 콘서트의 일정 리스트 조회
 //        List<ConcertScheduleDto> concertSchedules = concertService.getConcertSchedulesByConcertNo(concertNo);
@@ -146,21 +151,27 @@ public class TicketController {
 	// 오프라인 티켓 구매 페이지- get (파라미터로 concertNo 전달)
 	@GetMapping("/ticketShop/offlineTicketView")
 	public String offlineTicketView(
-			@RequestParam("concertNo") Integer concertNo,
+			@RequestParam("saleConcertNo") Integer saleConcertNo,
 //			@RequestParam("saleConcertNo") Integer saleConcertNo,
 			String memberId, Model model) {
 		memberId = (String)session.getAttribute("session_id");
 		System.out.println("세션에 저장된 ID 1: " + memberId);
 		
-		// 콘서트 정보 조회
-		ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
-		System.out.println("concertDto: "+concertDto);
-		
         // 해당 콘서트의 판매 티켓 리스트 (판매 가능 기간, 전체 티켓 개수, 남은 티켓 개수, 솔드아웃 여부 등)
-        List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertByConcertNo(concertNo);
+//        List<SaleConcertDto> saleConcerts = saleConcertService.getSaleConcertBySaleConcertNo(saleConcertNo);
+		
+		// 해당 콘서트의 판매 정보
+		SaleConcertDto saleConcert = saleConcertService.getSaleConcertBySaleConcertNo(saleConcertNo);
+        
+        // SaleConcertDto에서 concertNo 가져오기
+        Integer concertNo = saleConcert.getConcertDto().getConcertNo();
+        
+        // 콘서트 정보 조회
+        ConcertDto concertDto = concertService.getConcertByConcertNo(concertNo);
+        System.out.println("concertDto: "+concertDto);
         
         // 해당 콘서트의 일정 리스트 조회
-        List<ConcertScheduleDto> concertSchedules = concertService.getConcertSchedulesByConcertNo(concertNo);
+        List<ConcertScheduleDto> concertSchedules = concertService.getConcertSchedulesBySaleConcertNo(saleConcertNo);
 
         System.out.println("concertNo: " + concertNo);
         System.out.println("concertSchedules: " + concertSchedules);
@@ -178,7 +189,7 @@ public class TicketController {
 		// ID 값을 JSP로 전달 (세션에 값이 없는 경우 null 전달)
 		model.addAttribute("memberId",memberId);
 		model.addAttribute("concertDto", concertDto);
-		model.addAttribute("saleConcertDto", saleConcerts);
+		model.addAttribute("saleConcertDto", saleConcert);
 		model.addAttribute("concertSchedules", concertSchedules); 
 		model.addAttribute("today", today); 
 		return "ticketShop/offlineTicketView";

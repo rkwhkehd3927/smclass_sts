@@ -33,17 +33,17 @@ $(document).ready(function() {
 	
 	// 아이템뷰 페이지 이동 - 임시
 		$(".product-item").on("click", function () {
-	        let concertId = $(this).data("id"); // 해당 상품의 concert_no 값 가져오기
+	        let saleConcertId = $(this).data("id"); // 해당 상품의 concert_no 값 가져오기
 			let category = $(this).data("category"); // 티켓 타입 가져오기
 			
 	//		alert("concertId: " + concertId + "\ncategory: " + category); // 확인용
-			console.log("concertId:", concertId);
+			console.log("saleConcertId:", saleConcertId);
 			console.log("category:", category);
 	        if (concertId) {
 				if (category === "Category-live") {
-		            window.location.href = "/ticketShop/onlineTicketView?concertNo=" + concertId;
+		            window.location.href = "/ticketShop/onlineTicketView?saleConcertNo=" + saleConcertId;
 		        } else {
-		            window.location.href = "/ticketShop/offlineTicketView?concertNo=" + concertId;
+		            window.location.href = "/ticketShop/offlineTicketView?saleConcertNo=" + saleConcertId;
 		        }
 	        }
 	    });

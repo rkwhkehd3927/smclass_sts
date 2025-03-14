@@ -16,11 +16,12 @@ public interface SaleConcertRepository extends JpaRepository<SaleConcertDto, Int
 	List<SaleConcertDto> findByRsvOpenDateLessThanEqual(LocalDate today);
 
 	
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회 - 오프라인용
-	List<SaleConcertDto> findByConcertDto_ConcertNo(Integer concertNo);
+	// 특정 concertNo에 해당하는 콘서트 판매 정보 조회 - 오프라인용
+//	List<SaleConcertDto> findByConcertDto_ConcertNo(Integer concertNo);
+//	List<SaleConcertDto> findBySaleConcertDto(Integer saleConcertNo);
 
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 중 하나 조회 - 온라인용
-	SaleConcertDto findFirstByConcertDto_ConcertNo(Integer concertNo);
+	// 특정 concertNo에 해당하는 콘서트 판매 정보 중 하나 조회 - 온라인용
+	SaleConcertDto findBySaleConcertNo(Integer saleConcertNo);
 
 
 

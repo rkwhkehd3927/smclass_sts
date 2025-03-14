@@ -23,16 +23,16 @@ public class SaleConcertServiceImpl implements SaleConcertService {
         return saleConcertRepository.findByRsvOpenDateLessThanEqual(today);
 	}
 
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회 - 오프라인용
-	@Override
-	public List<SaleConcertDto> getSaleConcertByConcertNo(Integer concertNo) {
-		return saleConcertRepository.findByConcertDto_ConcertNo(concertNo);
-	}
+	// 특정 saleConcertNo에 해당하는 콘서트 판매 정보 조회 - 오프라인용
+//	@Override
+//	public List<SaleConcertDto> getSaleConcertBySaleConcertNo(Integer saleConcertNo) {
+//		return saleConcertRepository.findBySaleConcertDto(saleConcertNo);
+//	}
 
-	// 특정 concertNo에 해당하는 판매 콘서트 정보 조회 - 온라인용
+	// 특정 saleConcertNo에 해당하는 콘서트 판매 정보 조회
 	@Override
-	public SaleConcertDto getSingleSaleConcertByConcertNo(Integer concertNo) {
-		return saleConcertRepository.findFirstByConcertDto_ConcertNo(concertNo);
+	public SaleConcertDto getSaleConcertBySaleConcertNo(Integer saleConcertNo) {
+		return saleConcertRepository.findBySaleConcertNo(saleConcertNo);
 	}
 
 }

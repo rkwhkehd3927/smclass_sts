@@ -113,7 +113,8 @@ public class SeatController {
 		
 		
 		// ✅ ConcertDto 가져오기
-		ConcertDto concertDto = concertScheduleDto.getConcertDto(); 
+		ConcertDto concertDto = concertScheduleDto.getSaleConcertDto().getConcertDto();
+		
 		System.out.println("concertDto: "+ concertDto);
 		
 		// ✅ 회원 정보 조회
