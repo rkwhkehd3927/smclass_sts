@@ -53,7 +53,7 @@ $(document).ready(function () {
 	           return;
 	       }
 		   // 선택한 일정 정보를 seatPopUp에 넘겨서 오픈
-           window.open('/ticketShop/seatPopUp?saleConcertNo=' + saleConcertNo + '&scheduleNo=' + selectedScheduleNo, 'popup', 'width=1100,height=710');
+           window.open('/ticketShop/seatPopUp?saleConcertNo=' + saleConcertNo + '&scheduleNo=' + selectedScheduleNo, 'popup', 'width=1100,height=650');
        }
     });
 });

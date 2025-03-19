@@ -261,7 +261,8 @@ public class TicketController {
     public String createOnlineTicket(
     		@RequestParam("saleConcertNo") Integer saleConcertNo,
     		@RequestParam("scheduleNo") Integer scheduleNo, 
-    		Integer totalPrice,
+    		@RequestParam("concertPrice") Integer totalPrice,
+//    		Integer totalPrice,
     		Model model) {
         // SaleConcertDto와 ConcertScheduleDto를 가져옴
     	// 해당 콘서트의 판매 정보
@@ -293,15 +294,17 @@ public class TicketController {
                 .build();
 
         // 티켓 저장 (DB에 저장)
-        ticketRepository.save(ticketDto);
+        TicketDto savedTicket = ticketRepository.save(ticketDto);
 
         // 티켓 생성
 //        TicketDto ticketDto = ticketService.createOnlineTicket(saleConcertDto, concertScheduleDto, saleConcertDto.getConcertPrice());
 
         // 티켓 생성 후 결과 반환
-        model.addAttribute("ticketDto", ticketDto);
+        model.addAttribute("ticketDto", savedTicket);
 //        return "redirect:/pay/orderPay2"; // 예시로 티켓 확인 페이지로 이동
-        return "ticketShop/onlinePayPopUp";
+//        return "ticketShop/onlinePayPopUp";
+        // 카카오페이 결제 API를 호출하기 전에 티켓 생성 후, 리디렉션 처리
+        return "redirect:/pay/orderPay2?ticketNo=" + savedTicket.getTicketNo();
     }
 	
     // 랜덤 redeemCode 생성 함수

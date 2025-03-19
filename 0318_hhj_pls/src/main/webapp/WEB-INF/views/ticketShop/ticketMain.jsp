@@ -51,6 +51,12 @@
 			$(".second-banner").click(function() {
 				window.location.href="/ticketShop/onlineTicketView?saleConcertNo=3"
 			});
+			$(".third-banner").click(function() {
+				window.location.href="/smain"
+			});
+			$(".fourth-banner").click(function() {
+				window.location.href="/ticketShop/marketplace"
+			});
 		});
 		
 		
@@ -88,13 +94,13 @@
                 	<img src="/images/index_login/plave.jpg" alt="배너 2">
                 	<div class="banner-text">Plave HELLO ASTERUM ENCORE :<br>LIVE STREAMING OPEN</div>
                	</div>
-                <div class="swiper-slide">
+                <div class="swiper-slide third-banner">
                 	<img src="/images/index_login/bts.png" alt="배너 3">
                 	<div class="banner-text">Fanzy Goods Shop OPEN<br>다양한 아티스트의 굿즈를 만나보세요!</div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide fourth-banner">
                 	<img src="/images/index_login/tom.png" alt="배너 4">
-                	<div class="banner-text">Fanzy Ticket Shop OPEN<br>다양한 공연 티켓을 만나보세요!</div>
+                	<div class="banner-text">Fanzy Marketplace OPEN<br>멤버쉽 회원들과 안전한 티켓거래를 해보세요!</div>
                	</div>
             </div>
             <div class="swiper-pagination"></div>
