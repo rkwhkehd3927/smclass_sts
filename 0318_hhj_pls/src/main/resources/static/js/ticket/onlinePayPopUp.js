@@ -26,6 +26,13 @@ $(document).ready(function() {
 //        alert('결제 단계로 넘어갑니다.');
 //		window.location.href = '/';
 
+		var paymentMethod = $(".choosePayment").val();
+		if (paymentMethod != "kakao") {
+		                alert("결제수단을 선택해주세요.");
+						return;
+					}
+		
+
 //		if(confirm("상품을 구매하시겠습니까?")){
 //		  let saleConcertNo = $(".popup").data("id");  // saleConcertNo
 //          let scheduleNo = $('.date-select').val();    // scheduleNo
@@ -83,8 +90,8 @@ $(document).ready(function() {
 //					 
 //                 } // error
 //         	}); // ticket_ajax
-			  
-					  
+//			  
+//					  
 //		  } // if 
 
 		  
@@ -109,7 +116,7 @@ $(document).ready(function() {
 		  	            	  alert("실패");
 		  	              }
 		  	          });
-		  		  }
+		  		  } // if
 
 
     });

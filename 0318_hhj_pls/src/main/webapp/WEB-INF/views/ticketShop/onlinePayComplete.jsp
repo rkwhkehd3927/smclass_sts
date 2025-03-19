@@ -141,7 +141,8 @@
         <div class="value">${paymentMethod}</div>
       </div>
       
-      <button onclick="location.href='/smain'">확인</button>
+<!--       <button onclick="location.href='/smain'">확인</button> -->
+      <button onclick="">확인</button>
     </div>
   </section>
 </body>

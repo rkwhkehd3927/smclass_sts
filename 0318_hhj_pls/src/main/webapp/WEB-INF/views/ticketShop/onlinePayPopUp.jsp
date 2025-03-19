@@ -101,6 +101,12 @@
             </div>
         </div>
         <div class="price-box">
+        	<div class="price-row"><span>결제수단</span>
+                <select class="choosePayment">
+                    <option value="0">결제 수단 선택</option>
+                    <option value="kakao">카카오페이</option>
+                </select>
+            </div>
             <div class="price-row"><span>상품금액</span><span class="concertPrice">₩${saleConcertDto.concertPrice}</span></div>
             <div class="price-row"><span>사용 가능 포인트</span><span class="rewardPoints">0 pt</span></div>
             <div class="price-row"><span>사용 할 포인트<span class="rewardDesc">·&nbsp; 적립금 일부만 사용가능</span></span>
@@ -109,6 +115,7 @@
                     <option value="${memberDto.member_mileage}">0 pt</option> --%>
                 </select>
             </div>
+            
             <hr>
             <div class="price-row"><strong>총 결제 금액</strong><strong class="finalPrice">₩${saleConcertDto.concertPrice}</strong></div>
             <div class="price-row"><span>지급 예정 포인트</span><span class="pendingRewards">0 pt</span></div>

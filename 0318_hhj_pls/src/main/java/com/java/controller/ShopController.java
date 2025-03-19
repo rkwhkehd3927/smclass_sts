@@ -413,7 +413,11 @@ public class ShopController {
 	@ResponseBody
 	@PostMapping("/pay/orderPay2")
 	public ReadyResponseDto orderPay2(
-			
+//			@RequestParam("ticketNo") Long ticketNo,
+//	        @RequestParam("totalPrice") Integer totalPrice,
+//	        @RequestParam("memberId") String memberId,
+//	        @RequestParam("saleConcertNo") Integer saleConcertNo,
+//	        @RequestParam("scheduleNo") Integer scheduleNo,
 			
 			
 			OrderDto odto, HttpSession session, 
