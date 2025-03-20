@@ -19,7 +19,7 @@ public interface SeatRepository extends JpaRepository<SeatDto, Integer> {
 //    @Query("SELECT DISTINCT s.concertScheduleDto FROM SeatDto s")
 //    @Query("SELECT s.concertScheduleDto FROM SeatDto s WHERE s.concertScheduleDto.saleConcertNo = :saleConcertNo")
 //    List<com.java.dto.ConcertScheduleDto> findDistinctSchedules(@Param("saleConcertNo") Integer saleConcertNo);
-	@Query("SELECT s.concertScheduleDto FROM SeatDto s WHERE s.concertScheduleDto.saleConcertDto.saleConcertNo = :saleConcertNo")
+	@Query("SELECT s.concertScheduleDto FROM SeatDto s WHERE s.concertScheduleDto.saleConcertDto.saleConcertNo = :saleConcertNo ORDER BY s.concertScheduleDto.scheduleNo ASC")
 	List<ConcertScheduleDto> findDistinctSchedules(@Param("saleConcertNo") Integer saleConcertNo);
     
 
